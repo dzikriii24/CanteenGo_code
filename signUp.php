@@ -16,7 +16,33 @@ if (isset($_POST['submit'])) {
   $domisili = $_POST['domisili'];
   $nomerwa = $_POST['nomerwa'];
   $userins = $_POST['userins'];
-  $foto_profile = $_POST['fotoprofile'];
+
+  if (isset($_FILES['fotoprofile'])) {
+    $file_name = $_FILES['fotoprofile']['name'];
+    $file_tmp = $_FILES['fotoprofile']['tmp_name'];
+    $file_size = $_FILES['fotoprofile']['size'];
+    $file_error = $_FILES['fotoprofile']['error'];
+
+    // File validation
+    $allowed_extensions = ['jpg', 'jpeg', 'png'];
+    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+    if (in_array($file_ext, $allowed_extensions)) {
+        // Generate a unique file name to prevent overwriting
+        $new_file_name = uniqid('', true) . '.' . $file_ext;
+        $upload_dir = 'uploads/';  // Folder where you want to save the file
+
+        // Move file to the server folder
+        if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
+            $foto_profile = $upload_dir . $new_file_name;
+        } else {
+            echo "<script>alert('Gagal mengupload foto profile.');</script>";
+        }
+    } else {
+        echo "<script>alert('Hanya file jpg, jpeg, dan png yang diperbolehkan.');</script>";
+    }
+}
+
 
   if ($password == $upassword) {
     $sql = "SELECT * FROM user WHERE email = '$email'";
@@ -29,7 +55,7 @@ if (isset($_POST['submit'])) {
       $result = mysqli_query($conn, $sql);
       if ($result) {
         echo "<script>
-                alert ('Yeeeyy Kamu Berhasil Login >< Selamat Yaaa')
+                alert ('Pendaftaran Berhasil, Silahkan Login')
                 </script>";
         $username = "";
         $email = "";
@@ -37,14 +63,14 @@ if (isset($_POST['submit'])) {
         $_POST['upassword'] = "";
       } else {
         echo "<script>
-                alert ('Yahh, Ada Yang Salah Nihh:(')
+                alert ('Password atau Email Salah')
                 </script>";
       }
     } else {
-      echo "<script>alert ('yahhh, email kamu udah dipake sama akun lainn')</script>";
+      echo "<script>alert ('Email Sudah digunakan Oleh Pengguna Lain')</script>";
     }
   } else {
-    echo "<script>alert ('passwordnya harus sama yaaakk. hihihi')</script>";
+    echo "<script>alert ('Password Harus Sama')</script>";
   }
 }
 
@@ -128,7 +154,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="rounded-lg bg-[#31603D] p-8 shadow-lg lg:col-span-3 lg:p-12" id="formSignUp">
-          <form class="space-y-4" id="formSignUp" method="post">
+          <form class="space-y-4" id="formSignUp" method="post" enctype="multipart/form-data">
             <div>
               <label class="sr-only" for="name">Username</label>
               <input
@@ -165,12 +191,13 @@ if (isset($_POST['submit'])) {
               <p class="text-white">Masukan Foto Profile</p>
               <label class="sr-only" for="name">Ulangi Password</label>
               <input
-                name="fotoprofile"
                 required
                 class="w-full rounded-lg p-3 text-sm bg-[#F8EECB] placeholder-[#31603D;] outline-none "
                 placeholder="Masukan Foto Profile"
                 type="file"
-                id="fotoprofile" />
+                id="foto_profile" 
+                name="fotoprofile" 
+                />
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">

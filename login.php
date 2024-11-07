@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['username'] = $row['username'];
     header("Location: homePage.php");
   } else {
-    echo "<script>alert('Yahhh, Kamu Salah Masukin Email/Password:( Coba Lagi Yaaaa!')</script>";
+    echo "<script>alert('Password atau Email Salah, Silahkan Coba Lagi')</script>";
   }
 }
 
@@ -139,31 +139,6 @@ if (isset($_POST['submit'])) {
       color: white;
     }
   </style>
-
-<!-- <div id="alert" role="alert" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-  <div id="alert-box" class="rounded-xl border border-gray-100 bg-white p-6 w-80 shadow-lg text-center">
-    <div class="flex items-start gap-4 justify-center">
-      <span id="alert-icon" class="text-green-600">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </span>
-      <div class="flex-1">
-        <strong id="alert-title" class="block font-medium text-gray-900">Login berhasil!</strong>
-        <p id="alert-message" class="mt-1 text-sm text-gray-700">Anda berhasil login ke akun CanteenGo.</p>
-      </div>
-    </div> -->
-
-    <!-- Loading Animation -->
-    <!-- <div class="mt-4 flex justify-center gap-2" id="loading-animation">
-      <span class="loading loading-ball loading-xs"></span>
-      <span class="loading loading-ball loading-sm"></span>
-      <span class="loading loading-ball loading-md"></span>
-      <span class="loading loading-ball loading-lg"></span>
-    </div>
-  </div>
-</div> -->
-
 
   <section class="relative flex flex-wrap lg:h-screen lg:items-center">
     <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">

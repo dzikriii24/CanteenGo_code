@@ -44,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Query untuk menyimpan data produk
-    $sql = "INSERT INTO produk (username_penjual, nama_produk, harga, nomer_wa, deskripsi, jenis_produk, foto_produk)
-            VALUES ('$username_penjual', '$nama_produk', '$harga', '$no_wa', '$deskripsi', '$jenis_produk', '$gambar_url')";
+$sql = "INSERT INTO produk (username_penjual, nama_produk, harga, nomer_wa, deskripsi, jenis_produk, foto_produk, status)
+        VALUES ('$username_penjual', '$nama_produk', '$harga', '$no_wa', '$deskripsi', '$jenis_produk', '$gambar_url', 'pending')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert ('Produk Berhasil Dipost');
+        echo "<script>alert ('Produk Berhasil Terkirim'); 
         window.location.href = 'homePage.php';
         </script>";
         // echo "Data produk berhasil disimpan!";

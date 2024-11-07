@@ -1,3 +1,14 @@
+<?php
+// Koneksi database
+include 'conect.php';
+
+// Query untuk mengambil produk dengan status 'pending'
+$sql = "SELECT * FROM produk WHERE status = 'pending'";
+$result = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="bg-[#F5C065]">
 
@@ -109,180 +120,41 @@
               <th>Setujui/Tidak</th>
             </tr>
           </thead>
-          <tbody>
-
-            <!-- row 1 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-12 w-12">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Burger</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Makanan
-                <br />
-              </td>
-              <td>
-                Rp. 10.000
-                <br />
-              </td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, sequi nostrum! Alias, sunt cumque. Doloremque doloribus voluptate pariatur facere repudiandae error? Praesentium nemo ex voluptatibus sapiente ea! Voluptates, aut et!</td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-10 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded  px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Setujui
-                  </a>
-
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Tidak
-                  </a>
-
-                </div>
-              </th>
-            </tr>
-            <!-- row 2 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-12 w-12">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Burger</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Makanan
-                <br />
-              </td>
-              <td>
-                Rp. 10.000
-                <br />
-              </td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, sequi nostrum! Alias, sunt cumque. Doloremque doloribus voluptate pariatur facere repudiandae error? Praesentium nemo ex voluptatibus sapiente ea! Voluptates, aut et!</td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-10 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded  px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Setujui
-                  </a>
-
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Tidak
-                  </a>
-
-                </div>
-              </th>
-            </tr>
-            <!-- row 3 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-12 w-12">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Burger</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Makanan
-                <br />
-              </td>
-              <td>
-                Rp. 10.000
-                <br />
-              </td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, sequi nostrum! Alias, sunt cumque. Doloremque doloribus voluptate pariatur facere repudiandae error? Praesentium nemo ex voluptatibus sapiente ea! Voluptates, aut et!</td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-10 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded  px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Setujui
-                  </a>
-
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Tidak
-                  </a>
-
-                </div>
-              </th>
-            </tr>
-
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-12 w-12">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">Burger</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Makanan
-                <br />
-              </td>
-              <td>
-                Rp. 10.000
-                <br />
-              </td>
-              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, sequi nostrum! Alias, sunt cumque. Doloremque doloribus voluptate pariatur facere repudiandae error? Praesentium nemo ex voluptatibus sapiente ea! Voluptates, aut et!</td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-10 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded  px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Setujui
-                  </a>
-
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Tidak
-                  </a>
-
-                </div>
-              </th>
-            </tr>
+          <?php 
+while($row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>";
+    echo "<div class='flex items-center gap-3'>";
+    echo "<div class='avatar'>";
+    echo "<div class='rounded-lg h-12 w-12'>";
+    echo "<img src='" . $row['foto_produk'] . "' alt='Avatar'>";
+    echo "</div>";
+    echo "</div>";
+    echo "<div>";
+    echo "<div class='font-bold'>" . $row['nama_produk'] . "</div>";
+    echo "</div>";
+    echo "</div>";
+    echo "</td>";
+    echo "<td>" . $row['jenis_produk'] . "<br /></td>";
+    echo "<td>Rp. " . number_format($row['harga'], 0, ',', '.') . "<br /></td>";
+    echo "<td>" . $row['deskripsi'] . "</td>";
+    echo "<th>";
+    echo "<div class='mt-8 flex flex-wrap gap-4 text-center px-10'>";
+    echo "<form method='post' action='approveProduct.php'>";
+    echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+    echo "<button type='submit' name='approve' class='block w-full rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto'>Setujui</button>";
+    echo "</form>";
+    echo "<form method='post' action='rejectProduct.php'>";
+    echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+    echo "<button type='submit' name='reject' class='block rounded px-3 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto'>Tidak</button>";
+    echo "</form>";
+    echo "</div>";
+    echo "</th>";
+    echo "</tr>";
+}
+?>
+            
+            
         </table>
       </div>
     </div>

@@ -7,7 +7,8 @@ if (!isset($_SESSION['username'])) {
 }
 
 
-$sql = "SELECT id, nama_produk, foto_produk, deskripsi, harga, jenis_produk FROM produk ORDER BY id";
+$sql = "SELECT id, nama_produk, foto_produk, deskripsi, harga, jenis_produk FROM produk WHERE status = 'approved' ";
+
 $result = $conn->query($sql);
 
 $produk_list = []; // Inisialisasi array kosong

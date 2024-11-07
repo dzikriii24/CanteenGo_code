@@ -1,3 +1,13 @@
+<?php
+// Koneksi database
+include 'conect.php';
+
+// Query untuk mengambil produk dengan status 'pending'
+$sql = "SELECT * FROM user";
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="bg-[#F5C065]">
 
@@ -86,10 +96,10 @@
 
     <!-- Main Content (Right Side) -->
     <div class="flex-1 p-6 overflow-auto">
-    <a href="admin.php">
-        <button id="btn-back" class="absolute top-4 left-60 px-4 py-2 rounded-md ">
+      <a href="admin.php"><button id="btn-back" class="absolute top-4 left-60 px-4 py-2 rounded-md ">
       Dashboard
-      </button>
+      </button></a>
+        
       <div class="mx-auto max-w-lg text-center">
         <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Check Pengguna</h2>
       </div>
@@ -114,189 +124,63 @@
       </div>
       <!-- Content Table -->
       <div class="overflow-x-auto mt-10 ">
-        <table class="table w-full items-center flex justify-center place-content-center">
-          <thead>
-            <tr class="text-center">
-              <th>Foto Profile</th>
-              <th>Nama Penjual</th>
-              <th>Instagram</th>
-              <th>Nomer WhatsApp</th>
-              <th>Detail</th>
-            </tr>
-          </thead>
-          <tbody>
+      <table class="table w-full items-center flex justify-center place-content-center">
+  <thead>
+    <tr class="text-center">
+      <th>Foto Profile</th>
+      <th>Nama Penjual</th>
+      <th>Instagram</th>
+      <th>Nomer WhatsApp</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
 
-            <!-- row 1 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-16 w-16">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-              <div>
-                    <div class="font-bold">Dzikri</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-              </td>
-              <td>
-                sweswoz
-                <br />
-              </td>
-              <td>
-                +62 895-1382-2014
-                <br />
-              </td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-16 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Hapus Profile
-                  </a>
-                  <a
-                    href="profilePenjual.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Lihat Profile
-                  </a>
+  <tbody>
+    <?php
+    // Assuming $result is the result set from the database query
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        // Profile Photo
+        echo "<td>";
+        echo "<div class='flex items-center gap-3'>";
+        echo "<div class='avatar'>";
+        echo "<div class='rounded-lg h-16 w-16'>";
+        echo "<img src='" . $row['fotoprofile'] . "' alt='Avatar'>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</td>";
 
-                </div>
-              </th>
-            </tr>
-            <!-- row 2 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-16 w-16">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-              <div>
-                    <div class="font-bold">Dzikri</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-              </td>
-              <td>
-                sweswoz
-                <br />
-              </td>
-              <td>
-                +62 895-1382-2014
-                <br />
-              </td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-16 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Hapus Profile
-                  </a>
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Lihat Profile
-                  </a>
-                </div>
-              </th>
-            </tr>
-           <!-- row 1 -->
-           <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-16 w-16">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-              <div>
-                    <div class="font-bold">Dzikri</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-              </td>
-              <td>
-                sweswoz
-                <br />
-              </td>
-              <td>
-                +62 895-1382-2014
-                <br />
-              </td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-16 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Hapus Profile
-                  </a>
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Lihat Profile
-                  </a>
-                </div>
-              </th>
-            </tr>
-            <!-- row 2 -->
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-16 w-16">
-                      <img src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-              <div>
-                    <div class="font-bold">Dzikri</div>
-                    <div class="text-sm opacity-50">Bandung</div>
-                  </div>
-              </td>
-              <td>
-                sweswoz
-                <br />
-              </td>
-              <td>
-                +62 895-1382-2014
-                <br />
-              </td>
-              <th>
-                <div class="mt-8 flex flex-wrap gap-4 text-center px-16 ">
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Hapus Profile
-                  </a>
-                  <a
-                    href="login.php"
-                    id="login"
-                    class="block w-full rounded px-12  py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
-                    Lihat Profile
-                  </a>
+        // Seller Name
+        echo "<td>";
+        echo "<div class='font-bold'>" . $row['username'] . "</div>";
+        echo "<div class='text-sm opacity-50'>" . $row['domisili'] . "</div>";
+        echo "</td>";
 
-                </div>
-              </th>
-            </tr>
-        </table>
+        // Instagram
+        echo "<td>" . $row['userins'] . "</td>";
+
+        // WhatsApp Number
+        echo "<td>" . $row['nomerwa'] . "</td>";
+
+        // Product Description (Detail)
+
+        // Action Buttons (Delete Profile, View Profile)
+        echo "<td>";
+        echo "<div class='mt-8 flex flex-wrap gap-4 text-center px-16'>";
+        echo "<form method='post' action='deleteProfile.php'>";
+        echo "<input type='hidden' name='user_id' value='" . $row['id'] . "'>";
+        echo "<button type='submit' name='delete' class='block w-full rounded px-12 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto'>Hapus Profile</button>";
+        echo "</form>";
+        echo "<a href='profilePenjual.php?username=" . $row['username'] . "' class='block w-full rounded px-12 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto'>Lihat Profile</a>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    }
+    ?>
+  </tbody>
+</table>
+
       </div>
     </div>
   </div>
