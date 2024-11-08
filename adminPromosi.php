@@ -55,9 +55,9 @@ input[type="number"]::-webkit-inner-spin-button,
       Back
     </button>
 <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Promosikan Produk Anda!</h2>
+        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Promosi Produk Penjual</h2>
         <p class="mt-10 text-[#31603D]" id="caption">
-          Silahkan Isi Formulir Dibawah Ini Jika Ingin Mempromosikan Produk
+          Silahkan Silahkan Isi Foto untuk Mempromosikan Produk
         </p>
       </div>
 <section class="bg-[#F5C065]">
@@ -81,60 +81,7 @@ input[type="number"]::-webkit-inner-spin-button,
                 <br><br>
             <input type="file" class="file-input w-full max-w-xs outline-none"aaccept=".jpg,.png" />
             </div>
-            
-          <details
-      class="w-full overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-      <summary
-        class="rounded-lg flex cursor-pointer items-center justify-between gap-2 bg-[#F8EECB] p-3 text-gray-900 transition">
-        <span class="text-sm font-medium text-[#31603D]"> Jenis Produk </span>
-
-        <span class="transition group-open:-rotate-180">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-4"
-            color="#31603D">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </span>
-      </summary>
-
-      <div class="" id="filter">
-        <header class="flex items-center justify-between p-4">
-          <span id="selected-count" class="text-sm text-[#D23D2D]">0 Terpilih</span>
-          <button id="reset-button" type="button" class="text-sm text-[#D23D2D] underline underline-offset-4 mx-10">
-            Reset
-          </button>
-        </header>
-
-        <ul class="space-y-1 border-t p-4" id="filter">
-          <li>
-            <label for="FilterInStock" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterInStock" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Makanan </span>
-            </label>
-          </li>
-
-          <li>
-            <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterPreOrder" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Minuman </span>
-            </label>
-          </li>
-
-          <li>
-            <label for="FilterOutOfStock" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterOutOfStock" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Dessert </span>
-            </label>
-          </li>
-        </ul>
-      </div>
-    </details>
-    <br>
+    <br><br><br><br><br>
     <div class="flex justify-end">
             <button
               type="submit"

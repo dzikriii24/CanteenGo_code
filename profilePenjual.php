@@ -9,82 +9,34 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_GET['username']; // Ambil username dari URL
 
-$sql = "SELECT id, nama_produk, foto_produk, deskripsi, harga FROM produk ORDER BY id";
-$result = $conn->query($sql);
-
-// Query untuk mengambil produk berdasarkan username penjual
-$query = "SELECT p.*, u.username, u.fotoprofile, u.userins
-          FROM produk p
-          JOIN user u ON p.username_penjual = u.username
+// Query untuk mengambil data profil penjual
+$query = "SELECT u.username, u.fotoprofile, u.userins
+          FROM user u
           WHERE u.username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Cek jika tidak ada produk ditemukan
+// Cek jika pengguna tidak ditemukan
 if ($result->num_rows === 0) {
-  echo "Produk tidak ditemukan untuk penjual ini.";
+  echo "Pengguna tidak ditemukan.";
   exit();
 }
 
-// Ambil data profil penjual (hanya 1 data)
+// Ambil data profil penjual
 $penjual = $result->fetch_assoc();
 $userins = $penjual['userins'] ? $penjual['userins'] : "Username Instagram tidak ditemukan.";
 $foto_profile = $penjual['fotoprofile'] ? $penjual['fotoprofile'] : "image/default.jpg";
 
-$sql = "SELECT userins, fotoprofile FROM user WHERE username = ?";
-$stmt = $conn->prepare($sql);
-
-if ($stmt === false) {
-  die("Error preparing statement: " . $conn->error);
-}
-
-// first check
-
-// end check
-
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result && $result->num_rows > 0) {
-  $row = $result->fetch_assoc();
-  $userins = $row['userins'];
-  $foto_profile = $row['fotoprofile'] ? $row['fotoprofile'] : "image/default.jpg";
-} else {
-  $userins = "Username Instagram tidak ditemukan.";
-  $foto_profile = "image/default.jpg";
-}
-
-
+// Query untuk mendapatkan produk yang dijual oleh pengguna
 $sqlProduk = "SELECT id, nama_produk, deskripsi, harga, foto_produk FROM produk WHERE username_penjual = ?";
 $stmtProduk = $conn->prepare($sqlProduk);
 $stmtProduk->bind_param("s", $username);
 $stmtProduk->execute();
 $resultProduk = $stmtProduk->get_result();
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
-  $id_produk = $_POST['id'];
-
-  $sql = "DELETE FROM produk WHERE id = ?";
-  $stmt = $conn->prepare($sql);
-  if ($stmt === false) {
-    echo "Error preparing statement: " . $conn->error;
-    exit();
-  }
-  $stmt->bind_param("i", $id_produk);
-  if ($stmt->execute()) {
-    echo "Produk berhasil dihapus.";
-  } else {
-    echo "Gagal menghapus produk: " . $stmt->error;
-  }
-  $stmt->close();
-  exit();
-}
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="bg-[#F5C065]">
