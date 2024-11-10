@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="bg-[#F5C065]">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,34 +49,37 @@ input[type="number"]::-webkit-inner-spin-button,
     }
   }
 </style>
+
 <body class="bg-[#f5c065]">
-<button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
+<button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md">
       Back
-    </button>
+</button>
+
 <div class="mx-auto max-w-lg text-center">
         <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Promosikan Produk Anda!</h2>
         <p class="mt-10 text-[#31603D]" id="caption">
           Silahkan Isi Formulir Dibawah Ini Jika Ingin Mempromosikan Produk
         </p>
-      </div>
+</div>
+
 <section class="bg-[#F5C065]">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5 bg-[#F8EECB] rounded-xl">
       <div class="lg:col-span-2 lg:py-12">
-      <div class="relative h-64 w-full sm:h-96 lg:h-full">
-    <img
-    id="gambar"
-      alt=""
-      src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg"
-      class="absolute inset-0 h-96 w-96 object-cover mx-16 rounded-xl"
-    />
-  </div>
+        <div class="relative h-64 w-full sm:h-96 lg:h-full">
+          <img
+            id="gambar"
+            alt=""
+            src="https://i.pinimg.com/564x/79/07/cf/7907cf59304e7a9aca3fde929a829b59.jpg"
+            class="absolute inset-0 h-96 w-96 object-cover mx-16 rounded-xl"
+          />
+        </div>
       </div>
 
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form action="#" class="space-y-4" id="formulir">
+        <form id="formulir" class="space-y-4">
           <div>
-            <label class="sr-only placeholder::text-black" for="namaProduk">Nama Produk</label>
+            <label class="sr-only" for="namaProduk">Nama Produk</label>
             <input
               class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
               placeholder="Nama Produk"
@@ -90,7 +92,7 @@ input[type="number"]::-webkit-inner-spin-button,
             <div>
               <label class="sr-only" for="harga">Harga</label>
               <input
-                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
                 placeholder="Harga"
                 type="number"
                 id="harga"
@@ -98,123 +100,82 @@ input[type="number"]::-webkit-inner-spin-button,
             </div>
 
             <div>
-              <label class="sr-only" for="noWA">Nomer WhatsApp</label>
+              <label class="sr-only" for="link_produk">Link Produk</label>
               <input
-                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
-                placeholder="Nomer WhatsApp"
-                type="number"
-                id="noWA"
+                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                placeholder="Masukan Link Produk"
+                type="text"
+                id="link_produk"
               />
             </div>
-            <div class="bg-[#F8EECB] p-3 w-full rounded-lg  outline-none text-[#31603D]">
-                <p>Masukan Foto Produk</p>
-                <br><br>
-            <input type="file" class="file-input w-full max-w-xs outline-none"aaccept=".jpg,.png" />
-            </div>
-            
             <div>
-            <label class="sr-only" for="message">Deskripsi Produk</label>
+              <label class="sr-only" for="foto_produk">Link Foto</label>
+              <input
+                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                placeholder="Masukan Link Foto (G-Drive)"
+                type="text"
+                id="foto_produk"
+              />
+              <p>Akses Link Foto Harus Diubah Menjadi Anyone with the link</p>
+            </div>
 
-            <textarea
-              class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#f8eecb]  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
-              placeholder="Deskripsi Produk"
-              rows="8"
-              id="deskripsi"
-            ></textarea>
-          </div>
-          <details
-      class="w-full overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-      <summary
-        class="rounded-lg flex cursor-pointer items-center justify-between gap-2 bg-[#F8EECB] p-3 text-gray-900 transition">
-        <span class="text-sm font-medium text-[#31603D]"> Jenis Produk </span>
+            <div>
+              <label class="sr-only" for="deskripsi">Caption (Opsional)</label>
+              <textarea
+                class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#f8eecb] outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                placeholder="Caption (Opsional)"
+                rows="8"
+                id="deskripsi"
+              ></textarea>
+            </div>
 
-        <span class="transition group-open:-rotate-180">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-4"
-            color="#31603D">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </span>
-      </summary>
-
-      <div class="" id="filter">
-        <header class="flex items-center justify-between p-4">
-          <span id="selected-count" class="text-sm text-[#D23D2D]">0 Terpilih</span>
-          <button id="reset-button" type="button" class="text-sm text-[#D23D2D] underline underline-offset-4 mx-10">
-            Reset
-          </button>
-        </header>
-
-        <ul class="space-y-1 border-t p-4" id="filter">
-          <li>
-            <label for="FilterInStock" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterInStock" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Makanan </span>
-            </label>
-          </li>
-
-          <li>
-            <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterPreOrder" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Minuman </span>
-            </label>
-          </li>
-
-          <li>
-            <label for="FilterOutOfStock" class="inline-flex items-center gap-2">
-              <input type="checkbox" id="FilterOutOfStock" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Dessert </span>
-            </label>
-          </li>
-        </ul>
-      </div>
-    </details>
-    <div class="flex justify-end">
-            <button
-              type="submit"
-              id="kirim"
-              class="inline-block w-full rounded-lg bg-[#D23D2D] px-5 p-3 font-medium text-white sm:w-auto position-absolute"
-            >
-              Kirim
-            </button>
-          </div>
+            <div>
+              <button
+                type="submit"
+                id="submit"
+                class="inline-block w-full rounded-lg bg-[#D23D2D] px-5 p-3 font-medium text-white sm:w-auto"
+              >
+                Kirim
+              </button>
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
 </section>
-<script src="script.js">
-</script>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const fileInput = document.querySelector('input[type="file"]');
-    const imagePreview = document.querySelector('.relative img');
+  function goBack() {
+    window.history.back();
+  }
 
-    fileInput.addEventListener('change', function (event) {
-      const file = event.target.files[0];
 
-      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        const reader = new FileReader();
+  document.getElementById('formulir').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        reader.onload = function (e) {
-          imagePreview.src = e.target.result;
-        };
+    const namaProduk = document.getElementById('namaProduk').value;
+    const harga = document.getElementById('harga').value;
+    const linkProduk = document.getElementById('link_produk').value;
+    const linkFoto = document.getElementById('foto_produk').value;
+    const deskripsi = document.getElementById('deskripsi').value;
 
-        reader.readAsDataURL(file);
-      } else {
-        alert('Format gambar harus JPG atau PNG');
-        fileInput.value = '';
-      }
-    });
+    if (namaProduk && harga && linkProduk) {
+      const message = `Hallo, saya ingin mempromosikan produk saya, untuk detail produk ada dibawah ini : \n\nNama Produk: ${namaProduk}\nHarga: Rp. ${harga}\nLink Produk: ${linkProduk}\nLink Foto: ${linkFoto}\nDeskripsi: ${deskripsi}`;
+
+     
+      const encodedMessage = encodeURIComponent(message);
+
+     
+      const whatsappUrl = `https://wa.me/6285156296580?text=${encodedMessage}`;
+
+     
+      window.location.href = whatsappUrl;
+    } else {
+      alert('Silakan isi semua data produk');
+    }
   });
 </script>
 
 </body>
-
 </html>

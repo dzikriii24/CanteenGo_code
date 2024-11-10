@@ -8,7 +8,7 @@ session_destroy();
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-[#F5F7F8] overflow-hidden">
 
 <head>
   <meta charset="UTF-8">
@@ -25,32 +25,28 @@ session_destroy();
 <body>
   <style>
     #background {
-      background-color: #F5C065;
-    }
-
-    #tagline {
-      color: #D23D2D;
+      background-color: #F5F7F8;
     }
 
     #login {
       background-color: #D23D2D;
-      color: white;
+      color: #F5F7F8;
 
     }
 
     #login:hover {
-      background-color: #F8EECB;
+      background-color: #F4CE14;
       color: #D23D2D;
     }
 
     #signup {
-      background-color: #31603D;
-      color: white;
+      background-color: #F4CE14;
+      color: #F5F7F8;
     }
 
     #signup:hover {
-      background-color: #F8EECB;
-      color: #D23D2D;
+      background-color: #D23D2D;
+      color: #F4CE14;
     }
 
     @media (max-width: 768px) {
@@ -68,28 +64,26 @@ session_destroy();
     <div
       class="place-content-center relative mx-auto max-w-screen-xl px-4 py-20 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
       <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-        <h1 class="text-xl font-extrabold  sm:text-3xl" id="tagline">
-          Your Canteen, Anytime
-
+        <h1 class="text-xl font-extrabold flex justify-center sm:text-3xl" id="tagline">
+        <p class="text-[#D23D2D]">Your Canteen,&nbsp;</p><p class="text-[#F4CE14]"> Anytime</p>
         </h1>
 
         <a href="" class="block">
           <img
             alt=""
             id="logo"
-            src="image/cgso.png"
+            src="image/newlogo.png"
             class="h-60 w-full object-cover sm:h-80 lg:h-96" />
 
         </a>
         <br>
-        <div class="mt-8 flex flex-wrap gap-4 text-center px-10 ">
+        <div class="mt-8 flex justify-center flex-wrap gap-4 text-center px-10 items-center ">
           <a
             href="login.php"
             id="login"
             class="block w-full rounded  px-12 py-3 text-sm font-medium shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto">
             Login
           </a>
-
           <a
             href="signUp.php"
             id="signup"

@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
   header("Location: index.php");
 }
 
+
 $productID = $_GET['id'];
 // Query untuk mendapatkan detail produk
 $sqlProduk = "SELECT p.nama_produk, p.deskripsi, p.harga, p.foto_produk, u.username AS penjual, u.nomerwa, u.fotoprofile 
@@ -85,6 +86,12 @@ if (!$produk) {
           class="mt-28 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-white transition hover:bg-[#31603D]">
           Hubungi Penjual
         </a>
+
+        <button id="copyLinkBtn" class="mt-4 inline-block rounded bg-[#31603D] px-8 py-3 text-sm font-medium text-white transition hover:bg-[#D23D2D]">
+          Salin Link
+        </button>
+
+        <p id="copyLinkMessage" class="mt-2 text-sm text-green-500 hidden">Link telah disalin ke clipboard!</p>
       </div>
     </div>
   </div>
@@ -93,6 +100,14 @@ if (!$produk) {
     function goBack() {
       window.history.back();
     }
+    document.getElementById('copyLinkBtn').addEventListener('click', function() {
+      const productUrl = window.location.href; // Get current page URL
+      navigator.clipboard.writeText(productUrl).then(function() {
+        document.getElementById('copyLinkMessage').classList.remove('hidden'); // Show success message
+      }, function() {
+        alert('Gagal menyalin link');
+      });
+    });
 </script>
 </body>
 </html>

@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="bg-[#F5C065]">
+<html lang="en" class="bg-[#F5F7F8]">
 
 <head>
   <meta charset="UTF-8">
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
 </head>
 <style>
   #formSignUp {
-    color: #D23D2D;
+    color: #495E57;
     outline: none;
     border: none;
   }
@@ -108,13 +108,14 @@ if (isset($_POST['submit'])) {
   #email::placeholder,
   #domisili::placeholder {
     outline: none;
-    color: #31603D;
+    color: #495E57;
     ;
 
   }
 
   #username,
   #password,
+  #upassword,
   #nomerWA,
   #instagram,
   #email,
@@ -124,22 +125,23 @@ if (isset($_POST['submit'])) {
   }
 
   #btnSubmit:hover {
-    color: #D23D2D;
+    background-color: #D23D2D;
+      color: #F4CE14;
   }
 
   #btn-back:hover {
-    background-color: #F8EECB;
-    color: #D23D2D;
+    background-color: #F4CE14;
+    color: #D23D2D; 
   }
 
   #btn-back {
     background-color: #D23D2D;
-    color: white;
+      color: #F4CE14;
   }
 </style>
 
-<body class="bg-[#F5C065]">
-  <section class="bg-[#F5C065]">
+<body class="bg-[#F5F7F8]">
+  <section>
     <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
       Back
     </button>
@@ -147,18 +149,18 @@ if (isset($_POST['submit'])) {
       <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
         <div class="lg:col-span-2 lg:py-12">
           <div class="">
-            <a href="#" class="text-5xl font-bold text-[#D23D2D]"> Sign Up CanteenGo </a>
-            <img id="image" src="image/cgso.png" class="h-52 w-52 mx-28" />
-            <p class="mt-2 not-italic text-center text-[#D23D2D]">Bergabunglah dengan CanteenGo sekarang dan nikmati kemudahan berbelanja makanan tanpa antre! Daftar segera untuk pengalaman yang lebih praktis!</p>
+            <a href="#" class="text-5xl font-bold text-[#45474B]"> Sign Up CanteenGo </a>
+            <br><br><br>
+            <img id="image" src="image/newlogo.png" class="h-52 w-52 mx-28" />
+            <p class="mt-2 not-italic text-center text-[#495E57]">Bergabunglah dengan CanteenGo sekarang dan nikmati kemudahan berbelanja makanan tanpa antre! Daftar segera untuk pengalaman yang lebih praktis!</p>
           </div>
         </div>
-
-        <div class="rounded-lg bg-[#31603D] p-8 shadow-lg lg:col-span-3 lg:p-12" id="formSignUp">
+        <div class="rounded-lg bg-[#495E57] p-8 shadow-lg lg:col-span-3 lg:p-12" id="formSignUp">
           <form class="space-y-4" id="formSignUp" method="post" enctype="multipart/form-data">
             <div>
               <label class="sr-only" for="name">Username</label>
               <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F8EECB] placeholder-[#31603D] outline-none "
+                class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none "
                 placeholder="Masukan Username"
                 type="text"
                 name="username"
@@ -170,7 +172,7 @@ if (isset($_POST['submit'])) {
               <input
                 name="password"
                 required
-                class="w-full rounded-lg p-3 text-sm bg-[#F8EECB] placeholder-[#31603D;] outline-none "
+                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
                 placeholder="Masukan Password"
                 type="password"
                 id="password" />
@@ -181,7 +183,7 @@ if (isset($_POST['submit'])) {
               <input
                 name="upassword"
                 required
-                class="w-full rounded-lg p-3 text-sm bg-[#F8EECB] placeholder-[#31603D;] outline-none "
+                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
                 placeholder="Ulangi Password"
                 type="password"
                 id="upassword" />
@@ -192,7 +194,7 @@ if (isset($_POST['submit'])) {
               <label class="sr-only" for="name">Ulangi Password</label>
               <input
                 required
-                class="w-full rounded-lg p-3 text-sm bg-[#F8EECB] placeholder-[#31603D;] outline-none "
+                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
                 placeholder="Masukan Foto Profile"
                 type="file"
                 id="foto_profile" 
@@ -204,7 +206,7 @@ if (isset($_POST['submit'])) {
               <div>
                 <label class="sr-only" for="email">Email</label>
                 <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F8EECB]"
+                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
                   placeholder="Masukan Email"
                   type="email"
                   name="email"
@@ -216,7 +218,7 @@ if (isset($_POST['submit'])) {
               <div>
                 <label class="sr-only" for="phone">Nomer WhatsApp</label>
                 <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F8EECB]"
+                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
                   placeholder="Masukan Nomer WhatsApp"
                   type="tel"
                   name="nomerwa"
@@ -228,7 +230,7 @@ if (isset($_POST['submit'])) {
               <div>
                 <label class="sr-only" for="phone">Username Instagram</label>
                 <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F8EECB]"
+                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
                   placeholder="Masukan Username Instagram"
                   type="text"
                   name="userins"
@@ -240,7 +242,7 @@ if (isset($_POST['submit'])) {
               <div>
                 <label class="sr-only" for="phone">Domisili</label>
                 <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F8EECB]"
+                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
                   placeholder="Masukan Domisili"
                   type="text"
                   name="domisili"
@@ -250,8 +252,8 @@ if (isset($_POST['submit'])) {
               </div>
             </div>
             <div class="flex items-center justify-between text-white">
-        <p class="text-sm" id="url-signin">
-            Sudah Punya Akun? <a class="underline" href="login.php" id="url-signup">Sign In</a>
+        <p class="text-sm text-['#F5F7F8']" id="url-signin">
+            Sudah Punya Akun? <a class="underline hover:text-[#F4CE14]" href="login.php" id="url-signup">Sign In</a>
         </p>
     </div>
 
@@ -262,7 +264,7 @@ if (isset($_POST['submit'])) {
                 type="submit"
                 id="btnSubmit"
                 name="submit"
-                class="inline-block w-full rounded-lg text-[#F8EECB] bg-[#D23D2D] px-5 py-3 font-medium sm:w-auto hover:bg-[#F8EECB]">
+                class="inline-block w-full rounded-lg text-[#D23D2D] bg-[#F4CE14] px-5 py-3 font-medium sm:w-auto hover:bg-[#F8EECB]">
                 Sign Up
               </button>
               

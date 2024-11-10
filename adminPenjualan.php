@@ -57,6 +57,9 @@ $result = $conn->query($sql);
             <a href="adminPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Promosi Produk</a>
           </li>
           <li>
+            <a href="cekPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek Promosi Produk</a>
+          </li>
+          <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
               <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                 <span class="text-sm font-medium"> Akun </span>
@@ -69,10 +72,7 @@ $result = $conn->query($sql);
 
               <ul class="mt-2 space-y-1 px-4">
                 <li>
-                  <form action="#">
-                    <button type="submit" class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Edit Akun</button>
-                  </form>
-                  <form action="#">
+                  <form action="index.php" onclick="return confirmLogout();">
                     <button type="submit" class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Logout</button>
                   </form>
                 </li>
@@ -166,6 +166,9 @@ while($row = $result->fetch_assoc()) {
       const sidebar = document.querySelector('.md\\:w-56');
       sidebar.classList.toggle('hidden');
     });
+    function confirmLogout() {
+    return confirm("Apakah Anda yakin ingin log out?");
+}
   </script>
 
 </body>

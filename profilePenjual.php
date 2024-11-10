@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 $username = $_GET['username']; // Ambil username dari URL
 
 // Query untuk mengambil data profil penjual
-$query = "SELECT u.username, u.fotoprofile, u.userins
+$query = "SELECT u.username, u.fotoprofile, u.userins, u.domisili
           FROM user u
           WHERE u.username = ?";
 $stmt = $conn->prepare($query);
@@ -82,7 +82,7 @@ $resultProduk = $stmtProduk->get_result();
 
       <p class="mt-4 text-[#D23D2D] flex justify-center text-lg">
       <a
-          href="#"
+          href="https://instagram.com/<?php echo htmlspecialchars($userins); ?>"
           rel="noreferrer"
           target="_blank"
           class="text-gray-700 transition hover:text-gray-700/75 px-1 mt-1"
@@ -97,6 +97,21 @@ $resultProduk = $stmtProduk->get_result();
           </svg>
         </a>
         <a href="https://instagram.com/<?php echo htmlspecialchars($userins); ?>"><?php echo htmlspecialchars($userins); ?></a>
+      </p>
+      <p class="mt-4 text-[#D23D2D] flex justify-center text-lg">
+      <a
+          href="https://www.google.co.id/maps/place/<?php echo $penjual['domisili']; ?>"
+          rel="noreferrer"
+          target="_blank"
+          class="text-gray-700 transition hover:text-gray-700/75 px-1 mt-1"
+        >
+          <span class="sr-only">Domisili</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2C8.686 2 6 4.686 6 8C6 11.419 9.635 16.232 11.323 18.291C11.662 18.744 12.338 18.744 12.677 18.291C14.365 16.232 18 11.419 18 8C18 4.686 15.314 2 12 2ZM12 10.5C10.896 10.5 10 9.604 10 8.5C10 7.396 10.896 6.5 12 6.5C13.104 6.5 14 7.396 14 8.5C14 9.604 13.104 10.5 12 10.5Z" fill="#000000"/>
+</svg>
+
+        </a>
+        <a href="https://www.google.co.id/maps/place/<?php echo $penjual['domisili']; ?>" class="text-black"><?php echo $penjual['domisili']; ?></a>
       </p>
     </div>
     <span class="flex items-center mt-4">

@@ -3,9 +3,10 @@
 include 'conect.php';
 
 // Query untuk mengambil produk dengan status 'pending'
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM promosi";
 $result = $conn->query($sql);
-$admin = $result->fetch_assoc();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ $admin = $result->fetch_assoc();
 </head>
 
 <body class="bg-[#F5C065]">
-<style>
+  <style>
      #btn-back:hover {
       background-color: #F8EECB;
       color: #D23D2D;
@@ -50,13 +51,13 @@ $admin = $result->fetch_assoc();
             <a href="adminPenjualan.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek Penjualan</a>
           </li>
           <li>
-            <a href="adminUser.php" class="bg-[#D23D2D] block rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#31603D] hover:text-white">Cek Pengguna</a>
+            <a href="adminUser.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek User</a>
           </li>
           <li>
             <a href="adminPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Promosi Produk</a>
           </li>
           <li>
-            <a href="cekPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek Promosi Produk</a>
+            <a href="cekPromosi.php" class="bg-[#D23D2D] block rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#31603D] hover:text-white">Cek Promosi Produk</a>
           </li>
           <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
@@ -82,12 +83,12 @@ $admin = $result->fetch_assoc();
       </div>
 
       <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 flex justify-betwen">
-        <a href="" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+        <a href="#" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
           <img alt="" src="https://i.pinimg.com/736x/5c/20/53/5c205367a84b2c684f28c5f076954667.jpg" class="size-10 rounded-full object-cover" />
           <div>
             <p class="text-xs">
               <strong class="block font-medium">Atmin CanteenGo</strong>
-              <span> Admin123@gmail.com</span>
+              <span> Admin123@gmail.com </span>
             </p>
           </div>
         </a>
@@ -95,79 +96,62 @@ $admin = $result->fetch_assoc();
     </div>
 
     <!-- Main Content (Right Side) -->
+     
     <div class="flex-1 p-6 overflow-auto">
-      <a href="admin.php"><button id="btn-back" class="absolute top-4 left-60 px-4 py-2 rounded-md ">
-      Dashboard
-      </button></a>
-        
+      
       <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Check Pengguna</h2>
+        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Check Promosi Penjual</h2>
+        <a href="admin.php">
+        <button id="btn-back" class="absolute top-4 left-60 px-4 py-2 rounded-md ">
+      Dashboard
+      </button>
+        </a>
       </div>
       <br><br>
-      <div class="rounded-xl">
-      <div class="place-content-center items-center flex justify-center">
-      <label class="input input-bordered flex items-center mt-4 w-50 text-[#D23D2D]">
-        <input type="text" class="grow" placeholder="Cari Username" id="searchInput" onkeyup="searchUser()" />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" color="#31603d" class="h-4 w-4 opacity-70">
-          <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
-        </svg>
-      </label>
-    </div>
-    
       <!-- Content Table -->
-      <div class="overflow-x-auto mt-10 ">
-      <table class="table w-full items-center flex justify-center place-content-center" id="userTable">
-  <thead>
-    <tr class="text-center">
-      <th>Foto Profile</th>
-      <th>Nama Penjual</th>
-      <th>Instagram</th>
-      <th>Nomer WhatsApp</th>
-      <th>Detail</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <?php while($row = $result->fetch_assoc()) { ?>
-            <tr class="user-row text-center">
-              <!-- Foto Profile -->
-              <td>
-                <div class="flex items-center justify-center gap-3">
-                  <div class="avatar">
-                    <div class="rounded-lg h-16 w-16">
-                      <img src="<?= $row['fotoprofile']; ?>" alt="Avatar">
-                    </div>
-                  </div>
-                </div>
-              </td>
-
-              <!-- Nama Penjual -->
-              <td>
-                <div class="font-bold"><?= $row['username']; ?></div>
-                <div class="text-sm opacity-50"><?= $row['domisili']; ?></div>
-              </td>
-
-              <!-- Instagram -->
-              <td><?= $row['userins']; ?></td>
-
-              <!-- WhatsApp Number -->
-              <td><?= $row['nomerwa']; ?></td>
-
-              <!-- Detail (Lihat Profile dan Hapus Profile) -->
-              <td>
-                <div class="mt-8 flex flex-wrap gap-4 text-center">
-                  <form method="post" action="deleteProfile.php">
-                    <input type="hidden" name="user_id" value="<?= $row['id']; ?>">
-                    <button type="submit" name="delete" class="block w-42 rounded px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700">Hapus Profile</button>
-                  </form>
-                  <a href="profilePenjual.php?username=<?= $row['username']; ?>" class="block w-42 rounded px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">Lihat Profile</a>
-                </div>
-              </td>
+      <div class="overflow-x-auto mt-10">
+        <table class="table w-full">
+          <thead>
+            <tr class="text-center">
+            <th>Display Promosi & Link Produk</th>
+              <th>Tanggal Mulai Promosi</th>
+              <th>Durasi Promosi</th>
+              <th>Tanggal Akhir Promosi</th>
             </tr>
-          <?php } ?>
-  </tbody>
-</table>
+          </thead>
+          <?php 
+while($row = $result->fetch_assoc()) { 
+?>
+<tr>
+    <td>
+        <div class="flex items-center gap-3">
+            <div class="avatar">
+                <div class="rounded-lg h-12 w-12">
+                    <img src="<?php echo $row['foto_produks']; ?>" alt="Avatar">
+                </div>
+            </div>
+            <div>
+                <a href="<?php echo $row['nama_produk']; ?>"><div class="font-bold"><?php echo $row['nama_produk']; ?></div></a>
+            </div>
+        </div>
+    </td>
+    <td>
+        <?php echo $row['tanggal_mulai']; ?><br />
+    </td>
+    <td>
+        <?php echo number_format($row['durasi_hari'], 0, ',', '.'); ?> Hari<br />
+    </td>
+    <td>
+        <?php echo $row['tanggal_berakhir']; ?>
+    </td>
+</tr>
+<?php 
+}
+?>
 
+            
+            
+        </table>
       </div>
     </div>
   </div>
@@ -178,20 +162,9 @@ $admin = $result->fetch_assoc();
       const sidebar = document.querySelector('.md\\:w-56');
       sidebar.classList.toggle('hidden');
     });
-
-    function searchUser() {
-    const input = document.getElementById("searchInput").value.toUpperCase();
-    const rows = document.querySelectorAll(".user-row");
-
-    rows.forEach(row => {
-      const username = row.cells[1].innerText.toUpperCase();
-      row.style.display = username.includes(input) ? "" : "none";
-    });
-  }
-  function confirmLogout() {
+    function confirmLogout() {
     return confirm("Apakah Anda yakin ingin log out?");
 }
-
   </script>
 
 </body>

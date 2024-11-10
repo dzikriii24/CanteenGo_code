@@ -156,10 +156,11 @@ $produk_list = isset($_SESSION['produk_list']) ? $_SESSION['produk_list'] : [];
 // Tampilkan hasil pencarian jika ada
 // Tampilkan hasil pencarian jika ada
 if (!empty($produk_list)) : ?>
+<div class="container mx-auto text-center pt-6">
     <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <?php foreach ($produk_list as $produk) : ?>
             <div class="bg-[#F8EECB] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
-                <img src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" alt="<?php echo htmlspecialchars($produk['nama_produk']); ?>" class="w-full h-48 object-cover rounded-xl mb-4">
+                <img src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" alt="<?php echo htmlspecialchars($produk['nama_produk']); ?>" class="w-full h-56 object-cover rounded-xl mb-4">
 
                 <h2 class="mt-4 text-xl font-bold text-[#D23D2D]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
 
@@ -175,9 +176,9 @@ if (!empty($produk_list)) : ?>
             </div>
         <?php endforeach; ?>
     </div>
+    </div>
 <?php
 endif;
-
 ?>
 
 <script>
