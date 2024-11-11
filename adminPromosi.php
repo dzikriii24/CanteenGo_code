@@ -2,6 +2,10 @@
 include 'conect.php';
 session_start();
 
+if (!isset($_SESSION['username'])) {
+  header("Location: index.php");
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nama_produk = $_POST['nama_produks'];
   $gambar_produk = '';

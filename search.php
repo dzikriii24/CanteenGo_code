@@ -8,12 +8,13 @@ if (!isset($_SESSION['username'])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en" data-theme="light" class="bg-[#F5C065]">
+<html lang="en" data-theme="light" class="bg-[#F5F7F8]">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Hasil Pencarian</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,13 +26,13 @@ if (!isset($_SESSION['username'])) {
 
 <style>
     #btn-back:hover {
-      background-color: white;
-      color: #D23D2D;
+      background-color: #F4CE14;
+      color: #D23D2D; 
     }
 
     #btn-back {
       background-color: #D23D2D;
-      color: white;
+      color: #F4CE14;
     }
   .carousel-item {
     display: none;
@@ -46,11 +47,12 @@ if (!isset($_SESSION['username'])) {
   }
 
   #search::placeholder {
-    color: #31603D;
+    color: #495E57;
   }
 
   #search {
-    background-color: #F8EECB;
+    background-color: #F5F7F8;
+    border: 1px solid #45474B;
     outline: none;
   }
 
@@ -75,7 +77,7 @@ if (!isset($_SESSION['username'])) {
 </style>
 
 
-<body class="bg-[#F5C065]">
+<body class="bg-[#F5F7F8]">
 <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
       Back
     </button>
@@ -83,8 +85,8 @@ if (!isset($_SESSION['username'])) {
 
     <div class="place-content-center items-center flex justify-center pt-4">
       <div class="navbar-center">
-        <img id="image" src="image/cgso.png" class="h-28 w-28 mx-52" />
-        <h2 class="text-center text-xl text-[#31603D]"><?php echo "<p id=dd>Selamat Datang di CanteenGo " . $_SESSION['username'] . " !!" . "</p>"; ?></h2>
+        <img id="image" src="image/newlogo.png" class="h-28 w-28 mx-52" />
+        <h2 class="text-center text-2xl font-bold sm:text-3xl text-[#45474B]"><?php echo "<p id=dd>Selamat Datang di CanteenGo " . $_SESSION['username'] . " !!" . "</p>"; ?></h2>
       </div>
     </div>
     <br><br>
@@ -93,13 +95,13 @@ if (!isset($_SESSION['username'])) {
       <form action="search.php" method="POST">
       <div class="place-content-center items-center flex justify-center" id="">
         <label class="input input-bordered flex items-center mt-4 w-50 text-[#D23D2D]" id="search">
-          <input type="text" class="grow " placeholder="Mau cari apa?" id="search" name="query" />
-          <button type="submit" class="mx-3 text-[#31603D]">Cari</button>
+          <input type="text" class="grow " placeholder="Mau cari apa?" id="" name="query" />
+          <button type="submit" class="mx-3 text-[#495E57]">Cari</button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
-            color="#31603d"
+            color="#495E57"
             class="h-4 w-4 opacity-70">
             <path
               fill-rule="evenodd"
@@ -113,7 +115,7 @@ if (!isset($_SESSION['username'])) {
       </form>
     <br><br>
     <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-3xl text-[#D23D2D] font-bold sm:text-4xl">Hasil Pencarian</h2>
+        <h2 class="text-2xl text-[#45474B] font-bold sm:text-2xl">Hasil Pencarian</h2>
       </div>
     <br><br><br>
 
@@ -156,15 +158,15 @@ $produk_list = isset($_SESSION['produk_list']) ? $_SESSION['produk_list'] : [];
 // Tampilkan hasil pencarian jika ada
 // Tampilkan hasil pencarian jika ada
 if (!empty($produk_list)) : ?>
-<div class="container mx-auto text-center pt-6">
+<div class="container mx-auto text-center pt-2">
     <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <?php foreach ($produk_list as $produk) : ?>
-            <div class="bg-[#F8EECB] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
+            <div class="bg-[#F4CE14] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
                 <img src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" alt="<?php echo htmlspecialchars($produk['nama_produk']); ?>" class="w-full h-56 object-cover rounded-xl mb-4">
 
-                <h2 class="mt-4 text-xl font-bold text-[#D23D2D]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
+                <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
 
-                <p class="mt-1 text-sm text-[#31603D]">
+                <p class="mt-1 text-sm text-[#495E57]">
                     <?php echo htmlspecialchars($produk['deskripsi']); ?>
                 </p>
 

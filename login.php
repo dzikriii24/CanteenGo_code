@@ -40,7 +40,8 @@ if (isset($_POST['submit'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Login CanteenGo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -179,7 +180,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div class="relative h-full w-full sm:h-full lg:h-full lg:w-1/2">
-      <img alt="" id="gambar" src="image/wgc.png" class="absolute inset-0 h-full w-full object-cover pb-2" />
+      <img alt="" id="gambar" src="image/gbli.png" class="absolute inset-0 h-full w-full object-cover pb-2" />
     </div>
   </section>
   <script>

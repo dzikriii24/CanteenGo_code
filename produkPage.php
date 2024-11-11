@@ -29,10 +29,11 @@ if (!$produk) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light" class="bg-[#F5C065]">
+<html lang="en" data-theme="light" class="bg-[#F5F7F8]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="image/icon.png" type="image/png">
   <title>Detail Produk</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -40,21 +41,34 @@ if (!$produk) {
   <script src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body class="bg-[#F5C065]">
-<button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md bg-[#D23D2D] text-white">
+<style>
+      #btn-back:hover {
+      background-color: #F4CE14;
+      color: #D23D2D; 
+    }
+
+    #btn-back{
+      background-color: #D23D2D;
+      color: #F4CE14;
+    }
+    
+</style>
+<body class="bg-[#F5F7F8]">
+<button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md bg-[#D23D2D] text-[#F4CE14]">
       Back
 </button>
+<br>
 <section>
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-      <div class="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-        <img alt="Produk" src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" />
+      <div class="bg-[#495E57] relative h-64 overflow-hidden rounded-xl sm:h-80 lg:order-last lg:h-full">
+        <img alt="Produk" src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" class="flex justify-center items-center h-96 w-96 object-cover rounded-xl"/>
       </div>
 
-      <div class="lg:py-6 bg-[#F8EECB] px-12 rounded-xl">
-        <h2 class="text-3xl font-bold sm:text-4xl text-[#D23D2D]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
+      <div class="lg:py-6 bg-[#F4CE14] px-12 rounded-xl">
+        <h2 class="text-3xl font-bold sm:text-4xl text-[#45474B]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
 
-        <p class="mt-4 text-[#31603D]"><?php echo htmlspecialchars($produk['deskripsi']); ?></p>
+        <p class="mt-4 text-[#495E57]"><?php echo htmlspecialchars($produk['deskripsi']); ?></p>
 
         <p class="text-2xl font-bold sm:text-2xl mt-4 text-[#D23D2D]">Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
         
@@ -63,15 +77,15 @@ if (!$produk) {
           <div class="flex-none">
             <div class="dropdown dropdown-betwen">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar outline-none border-none">
-                <p class="text-xl font-bold mt-0 mb-3 text-[#31603D]">
+                <p class="text-xl font-bold mt-0 mb-3 text-[#495E57]">
                     Penjual
                 </p>
                 <div class="w-16 h-16 rounded-full">
                   <img src="<?php echo htmlspecialchars($produk['fotoprofile']); ?>" alt="Profile Penjual" />
                 </div>
-                <p class="text-sm mt-2 text-[#31603D] w-40"><?php echo htmlspecialchars($produk['penjual']); ?></p>
+                <p class="text-sm mt-2 text-[#495E57] w-40"><?php echo htmlspecialchars($produk['penjual']); ?></p>
               </div>
-              <ul tabindex="0" class="menu menu-sm dropdown-content text-[#D23D2D] hover:text-[#31603D] z-[1] mt-3 mx-20 w-40 p-1">
+              <ul tabindex="0" class="menu menu-sm dropdown-content text-[#495E57] hover:text-[#F5F7F8] z-[1] mt-3 mx-20 w-40 p-1">
                 <li>
                   <a href="profilePenjual.php?username=<?php echo urlencode($produk['penjual']); ?>">
                     Profile Penjual
@@ -83,15 +97,15 @@ if (!$produk) {
         </div>
 
         <a href="https://wa.me/<?php echo htmlspecialchars($produk['nomerwa']); ?>?text=Hallo%20<?php echo urlencode($produk['penjual']); ?>%2C%20saya%20tertarik%20dengan%20produk%20<?php echo urlencode($produk['nama_produk']); ?>%20yang%20Anda%20jual%20di%20CanteenGo."
-          class="mt-28 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-white transition hover:bg-[#31603D]">
+          class="mt-28 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-white transition hover:bg-[#495E57]">
           Hubungi Penjual
         </a>
 
-        <button id="copyLinkBtn" class="mt-4 inline-block rounded bg-[#31603D] px-8 py-3 text-sm font-medium text-white transition hover:bg-[#D23D2D]">
+        <button id="copyLinkBtn" class="mt-4 inline-block rounded bg-[#F5F7F8] px-8 py-3 text-sm font-medium text-[#F4CE14] transition hover:bg-[#495E57]">
           Salin Link
         </button>
 
-        <p id="copyLinkMessage" class="mt-2 text-sm text-green-500 hidden">Link telah disalin ke clipboard!</p>
+        <p id="copyLinkMessage" class="mt-2 text-sm text-[#D23D2D] hidden">Link telah disalin ke clipboard!</p>
       </div>
     </div>
   </div>

@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Lupa Password</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -44,7 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <style>
     body {
-      background-color: #F5C065;
+      background-color: #F5F7F8;
+      overflow: hidden;
     }
 
     #image {
@@ -52,39 +54,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       align-items: center;
     }
 
-    #getstarted {
-      color: #31603D;
-    }
-
-    #caption {
-      color: #31603D;
-    }
-
     #inputEmail,
     #inputPassword {
-      background-color: #F8EECB;
-      border: 2px solid #31603D;
+      background-color: #F5F7F8;
+      border: 2px solid #495E57;  
       outline: none;
       color: #D23D2D;
     }
 
     #inputEmail::placeholder,
     #inputPassword::placeholder {
-      color: #31603D;
+      color: #495E57;
+      opacity: 75%;
     }
 
     #btn-signin {
-      background-color: #D23D2D;
-      color: white;
-    }
-
-    #btn-signin:hover {
-      background-color: #F8EECB;
+      background-color: #F4CE14;
       color: #D23D2D;
     }
 
+    #btn-signin:hover {
+      background-color: #D23D2D;
+      color: #F4CE14;
+    }
+
     #url-signin {
-      color: #31603D;
+      color: #495E57;
     }
 
     #url-signup:hover {
@@ -121,13 +116,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #btn-back:hover {
-      background-color: #F8EECB;
-      color: #D23D2D;
+      background-color: #F4CE14;
+      color: #D23D2D; 
     }
 
     #btn-back {
       background-color: #D23D2D;
-      color: white;
+      color: #F4CE14;
     }
   </style>
 
@@ -138,10 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
       <div class="mx-auto max-w-lg text-center">
-        <img id="image" src="image/cgso.png" class="h-28 w-28 mx-52" />
-        <h1 class="text-2xl font-bold sm:text-3xl" id="getstarted">Forgot Password?</h1>
-        <p class="mt-4" id="caption">
-          Silahkan masukan email untuk riset password
+        <img id="image" src="image/newlogo.png" class="h-28 w-28 mx-52" />
+        <h1 class="text-2xl font-bold sm:text-3xl text-[#45474B]" id="getstarted">Lupa Password?</h1>
+        <p class="mt-4 text-[#495E57]" id="caption">
+          Silahkan Masukan Email dan Password Baru
         </p>
       </div>
 
@@ -170,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
-      <img alt="" id="gambar" src="https://i.pinimg.com/originals/48/f9/b0/48f9b05200f0b6d1c82574060b277279.gif" class="absolute inset-0 h-full w-full object-cover pb-2" />
+      <img alt="" id="gambar" src="image/wgc.png" />
     </div>
   </section>
   <script>

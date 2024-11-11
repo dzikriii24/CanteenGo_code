@@ -61,12 +61,13 @@ $sql = "INSERT INTO produk (username_penjual, nama_produk, harga, nomer_wa, desk
 
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light" class="bg-[#F5C065]">
+<html lang="en" data-theme="light" class="bg-[#F5F7F8]">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Jual Produk</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -85,13 +86,13 @@ input[type="number"]::-webkit-inner-spin-button,
             -moz-appearance: textfield;
         }
     #btn-back:hover {
-      background-color: #F8EECB;
-      color: #D23D2D;
+      background-color: #F4CE14;
+      color: #D23D2D; 
     }
 
     #btn-back {
       background-color: #D23D2D;
-      color: white;
+      color: #F4CE14;
     }
     
     @media (max-width: 768px){
@@ -112,38 +113,38 @@ input[type="number"]::-webkit-inner-spin-button,
     }
   }
 </style>
-<body class="bg-[#f5c065]">
+<body class="bg-[#F5F7F8]">
 <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
       Back
     </button>
 <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Jual Produk Anda!</h2>
-        <p class="mt-10 text-[#31603D]" id="caption">
+        <h2 class="text-3xl text-[#45474B] mt-10 -mb-5 font-bold sm:text-4xl">Jual Produk Anda!</h2>
+        <p class="mt-10 text-[#495E57]" id="caption">
           Silahkan Isi Formulir Dibawah Ini Jika Ingin Menjual Produk
         </p>
       </div>
-<section class="bg-[#F5C065]">
+<section class="bg-[#F5F7F8]">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5 bg-[#F8EECB] rounded-xl">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5 bg-[#F4CE14] rounded-xl">
       <div class="lg:col-span-2 lg:py-12">
       <div class="relative h-64 w-full sm:h-96 lg:h-full">
     <img
     id="gambar"
       alt=""
-      src="https://i.pinimg.com/564x/15/49/bd/1549bdbe10a6368449fdc4a0347752c3.jpg"
+      src="image/sale.png"
       class="absolute inset-0 h-96 w-96 object-cover mx-16 rounded-xl"
     />
   </div>
       </div>
 
-      <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+      <div class="rounded-lg bg-[#495E57] p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form action="jualProduk.php" method="POST" enctype="multipart/form-data" class="space-y-4" id="formulir">
           
         <div>
-            <p class="text-[#31603D] mb-1">Username Penjual</p>
+            <p class="text-[#F5F7F8] mb-1">Username Penjual</p>
             <label class="sr-only placeholder::text-black" for="username_penjual">Username Penjual</label>
             <input
-              class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+              class="w-full rounded-lg bg-[#F5F7F8] p-3 text-sm outline-none text-[#495E57] placeholder:text-[#495E57]"
               placeholder="Username Penjual"
               type="text"
               id="username_penjual"
@@ -155,7 +156,7 @@ input[type="number"]::-webkit-inner-spin-button,
           <div>
             <label class="sr-only placeholder::text-black" for="namaProduk">Nama Produk</label>
             <input
-              class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+              class="w-full rounded-lg bg-[#F5F7F8] p-3 text-sm outline-none text-[#D23D2D] placeholder:text-[#495E57]"
               placeholder="Nama Produk"
               type="text"
               id="namaProduk"
@@ -167,7 +168,7 @@ input[type="number"]::-webkit-inner-spin-button,
             <div>
               <label class="sr-only" for="harga">Harga</label>
               <input
-                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                class="w-full rounded-lg bg-[#F5F7F8] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#495E57]"
                 placeholder="Harga"
                 type="number"
                 id="harga"
@@ -178,14 +179,14 @@ input[type="number"]::-webkit-inner-spin-button,
             <div>
               <label class="sr-only" for="noWA">Nomer WhatsApp</label>
               <input
-                class="w-full rounded-lg bg-[#F8EECB] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+                class="w-full rounded-lg bg-[#F5F7F8] p-3 text-sm  outline-none text-[#D23D2D] placeholder:text-[#495E57]"
                 placeholder="Nomer WhatsApp"
                 type="number"
                 id="noWA"
                 name="noWA"
               />
             </div>
-            <div class="bg-[#F8EECB] p-3 w-full rounded-lg  outline-none text-[#31603D]">
+            <div class="bg-[#F5F7F8] p-3 w-full rounded-lg  outline-none text-[#495E57]">
                 <p>Masukan Foto Produk</p>
                 <br><br>
                 <input type="file" name="gambar" class="file-input w-full max-w-xs outline-none" accept=".jpg,.png" />
@@ -195,7 +196,7 @@ input[type="number"]::-webkit-inner-spin-button,
             <label class="sr-only" for="message">Deskripsi Produk</label>
 
             <textarea
-              class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#f8eecb]  outline-none text-[#D23D2D] placeholder:text-[#31603D]"
+              class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]  outline-none text-[#D23D2D] placeholder:text-[#495E57]"
               placeholder="Deskripsi Produk"
               rows="8"
               name="deskripsi"
@@ -205,8 +206,8 @@ input[type="number"]::-webkit-inner-spin-button,
           <details
       class="w-full overflow-hidden [&_summary::-webkit-details-marker]:hidden">
       <summary 
-        class="rounded-lg flex cursor-pointer items-center justify-between gap-2 bg-[#F8EECB] p-3 text-gray-900 transition">
-        <span class="text-sm font-medium text-[#31603D]"> Jenis Produk </span>
+        class="rounded-lg flex cursor-pointer items-center justify-between gap-2 bg-[#F5F7F8] p-3 text-gray-900 transition">
+        <span class="text-sm font-medium text-[#495E57]"> Jenis Produk </span>
 
         <span class="transition group-open:-rotate-180">
           <svg
@@ -216,7 +217,7 @@ input[type="number"]::-webkit-inner-spin-button,
             stroke-width="1.5"
             stroke="currentColor"
             class="size-4"
-            color="#31603D">
+            color="#495E57">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>
         </span>
@@ -224,8 +225,8 @@ input[type="number"]::-webkit-inner-spin-button,
 
       <div class="" id="filter">
         <header class="flex items-center justify-between p-4">
-          <span id="selected-count" class="text-sm text-[#D23D2D]">0 Terpilih</span>
-          <button id="reset-button" type="button" class="text-sm text-[#D23D2D] underline underline-offset-4 mx-10">
+          <span id="selected-count" class="text-sm text-[#F5F7F8]">0 Terpilih</span>
+          <button id="reset-button" type="button" class="text-sm text-[#F5F7F8] underline underline-offset-4 mx-10">
             Reset
           </button>
         </header>
@@ -234,21 +235,21 @@ input[type="number"]::-webkit-inner-spin-button,
           <li>
             <label for="FilterInStock" class="inline-flex items-center gap-2">
             <input type="checkbox" name="jenis_produk[]" value="Makanan" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Makanan </span>
+              <span class="text-sm font-medium text-[#F5F7F8]"> Makanan </span>
             </label>
           </li>
 
           <li>
             <label for="FilterPreOrder" class="inline-flex items-center gap-2">
             <input type="checkbox" name="jenis_produk[]" value="Minuman" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Minuman </span>
+              <span class="text-sm font-medium text-[#F5F7F8]"> Minuman </span>
             </label>
           </li>
 
           <li>
             <label for="FilterOutOfStock" class="inline-flex items-center gap-2">
             <input type="checkbox" name="jenis_produk[]" value="Dessert" class="size-5 rounded filter-checkbox" />
-              <span class="text-sm font-medium text-[#D23D2D]"> Dessert </span>
+              <span class="text-sm font-medium text-[#F5F7F8]"> Dessert </span>
             </label>
           </li>
         </ul>
@@ -258,7 +259,7 @@ input[type="number"]::-webkit-inner-spin-button,
             <button
               type="submit"
               id="kirim"
-              class="inline-block w-full rounded-lg bg-[#D23D2D] px-5 p-3 font-medium text-white sm:w-auto position-absolute"
+              class="inline-block w-full rounded-lg bg-[#D23D2D] px-5 p-3 font-medium text-[#F5F7F8] sm:w-auto position-absolute hover:bg-[#F4CE14]"
             >
               Kirim
             </button>

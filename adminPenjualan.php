@@ -2,6 +2,11 @@
 // Koneksi database
 include 'conect.php';
 
+session_start();
+
+if (!isset($_SESSION['username'])) {
+  header("Location: index.php");
+}
 // Query untuk mengambil produk dengan status 'pending'
 $sql = "SELECT * FROM produk WHERE status = 'pending'";
 $result = $conn->query($sql);

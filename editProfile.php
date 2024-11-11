@@ -107,12 +107,13 @@ $stmtt->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="bg-[#F5C065]">
+<html lang="en" class="bg-[#F5F7F8]">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Profil</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Edit Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="script.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -122,104 +123,104 @@ $stmtt->close();
 </head>
 
 <style>
-  #btn-back:hover {
-    background-color: #F8EECB;
-    color: #D23D2D;
-  }
+    #btn-back:hover {
+      background-color: #F4CE14;
+      color: #D23D2D; 
+    }
 
-  #btn-back {
-    background-color: #D23D2D;
-    color: white;
-  }
+    #btn-back {
+      background-color: #D23D2D;
+      color: #F4CE14;
+    }
 </style>
 
-<body class="bg-[#F5C065]">
+<body class="bg-[#F5F7F8]">
   <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
     Back
   </button>
   <div class="mx-auto max-w-lg text-center mb-10 mt-10">
-    <h2 class="text-3xl text-[#D23D2D] font-bold sm:text-3xl">Edit Profil</h2>
+    <h2 class="text-3xl text-[#45474B] font-bold sm:text-3xl">Edit Profil Anda</h2>
   </div>
   <form id="edit-form" method="POST" action="editProfile.php" enctype="multipart/form-data">
-  <div class="bg-[#F5C065] flow-root rounded-lg border border-white py-3 shadow-sm">
+  <div class="bg-[#F5F7F8] flow-root rounded-lg border border-white py-3 shadow-sm">
     <dl class="-my-3 divide-y divide-gray-100 text-sm">
       <!-- Username Field -->
       <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Username</dt>
+        <dt class="font-medium text-[#495E57]">Username</dt>
         <dd class="sm:col-span-2">
-          <span id="username-display" class="text-[#31603D]"><?php echo htmlspecialchars($usernames); ?></span>
-          <input type="text" name="username" id="username-input" class="hidden text-[#D23D2D] sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" value="<?php echo htmlspecialchars($usernames); ?>" />
+          <span id="username-display" class="text-[#495E57]"><?php echo htmlspecialchars($usernames); ?></span>
+          <input type="text" name="username" id="username-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50 py-2 rounded-lg" value="<?php echo htmlspecialchars($usernames); ?>" />
           <div class="flex justify-end">
-            <button type="button" id="username-edit" onclick="toggleEditt('username')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="username-edit" onclick="toggleEditt('username')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
 
       <!-- Foto Profile Field -->
       <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Foto Profile</dt>
+        <dt class="font-medium text-[#495E57]">Foto Profile</dt>
         <dd class="sm:col-span-2">
           <div id="profile-display">
-          <img src="<?php echo htmlspecialchars($foto_profile); ?>" alt="Foto Profil" class="w-24" />
+          <img src="<?php echo htmlspecialchars($foto_profile); ?>" alt="Foto Profil" class="w-24 rounded-3xl" />
           </div>
-          <input type="file" name="fotoprofile" id="profile-input" class="hidden sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" accept="image/*" />
+          <input type="file" name="fotoprofile" id="profile-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50  py-2 rounded-lg" accept="image/*" />
           <div class="flex justify-end">
-            <button type="button" id="profile-edit" onclick="toggleEditt('profile')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="profile-edit" onclick="toggleEditt('profile')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
 
       <!-- Email Field -->
       <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Email</dt>
+        <dt class="font-medium text-[#495E57]">Email</dt>
         <dd class="sm:col-span-2">
-          <span id="email-display" class="text-[#31603D]"><?php echo htmlspecialchars($email); ?></span>
-          <input type="text" name="email" id="email-input" class="hidden text-[#D23D2D] sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" value="<?php echo htmlspecialchars($email); ?>" />
+          <span id="email-display" class="text-[#495E57]"><?php echo htmlspecialchars($email); ?></span>
+          <input type="text" name="email" id="email-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50  py-2 rounded-lg" value="<?php echo htmlspecialchars($email); ?>" />
           <div class="flex justify-end">
-            <button type="button" id="email-edit" onclick="toggleEditt('email')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="email-edit" onclick="toggleEditt('email')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
 
       <!-- Nomer WhatsApp Field -->
       <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Nomer WhatsApp</dt>
+        <dt class="font-medium text-[#495E57]">Nomer WhatsApp</dt>
         <dd class="sm:col-span-2">
-          <span id="phone-display" class="text-[#31603D]"><?php echo htmlspecialchars($nomerwa); ?></span>
-          <input type="text" name="nomerwa" id="phone-input" class="hidden text-[#D23D2D] sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" value="<?php echo htmlspecialchars($nomerwa); ?>" />
+          <span id="phone-display" class="text-[#495E57]"><?php echo htmlspecialchars($nomerwa); ?></span>
+          <input type="text" name="nomerwa" id="phone-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50 py-2 rounded-lg" value="<?php echo htmlspecialchars($nomerwa); ?>" />
           <div class="flex justify-end">
-            <button type="button" id="phone-edit" onclick="toggleEditt('phone')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="phone-edit" onclick="toggleEditt('phone')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
 
       <!-- Domisili Field -->
       <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Domisili</dt>
+        <dt class="font-medium text-[#495E57]">Domisili</dt>
         <dd class="sm:col-span-2">
-          <span id="domisili-display" class="text-[#31603D]"><?php echo htmlspecialchars($domisili); ?></span>
-          <input type="text" name="domisili" id="domisili-input" class="hidden text-[#D23D2D] sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" value="<?php echo htmlspecialchars($domisili); ?>" />
+          <span id="domisili-display" class="text-[#495E57]"><?php echo htmlspecialchars($domisili); ?></span>
+          <input type="text" name="domisili" id="domisili-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50 py-2 rounded-lg" value="<?php echo htmlspecialchars($domisili); ?>" />
           <div class="flex justify-end">
-            <button type="button" id="domisili-edit" onclick="toggleEditt('domisili')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="domisili-edit" onclick="toggleEditt('domisili')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
 
       <!-- Username Instagram Field -->
-      <div class="grid grid-cols-1 gap-1 p-3 bg-[#F5C065] sm:grid-cols-3 sm:gap-4">
-        <dt class="font-medium text-[#31603D]">Username Instagram</dt>
+      <div class="grid grid-cols-1 gap-1 p-3 bg-[#F5F7F8] sm:grid-cols-3 sm:gap-4">
+        <dt class="font-medium text-[#495E57]">Username Instagram</dt>
         <dd class="sm:col-span-2">
-          <span id="instagram-display" class="text-[#31603D]"><?php echo htmlspecialchars($userins); ?></span>
-          <input type="text" name="userins" id="instagram-input" class="hidden text-[#D23D2D] sm:col-span-2 border bg-[#F5C065] border-none outline-none w-50" value="<?php echo htmlspecialchars($userins); ?>" />
+          <span id="instagram-display" class="text-[#495E57]"><?php echo htmlspecialchars($userins); ?></span>
+          <input type="text" name="userins" id="instagram-input" class="hidden text-[#F5F7F8] sm:col-span-2 border bg-[#495E57] border-none outline-none w-50 py-2 rounded-lg" value="<?php echo htmlspecialchars($userins); ?>" />
           <div class="flex justify-end">
-            <button type="button" id="instagram-edit" onclick="toggleEditt('instagram')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-white transition hover:bg-[#31603D]">Edit</button>
+            <button type="button" id="instagram-edit" onclick="toggleEditt('instagram')" class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#F4CE14]">Edit</button>
           </div>
         </dd>
       </div>
     </dl>
   </div>
   
-  <button type="submit" class="mt-10 mx-3 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-white transition hover:bg-[#31603D] focus:outline-none focus:ring focus:ring-yellow-400">Simpan</button>
+  <button type="submit" class="mt-10 mx-3 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-[#F5F7F8] transition hover:bg-[#F4CE14] focus:outline-none focus:ring focus:ring-yellow-400">Simpan</button>
 </form>
   
   <script>
