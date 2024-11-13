@@ -54,7 +54,13 @@ session_destroy();
       #logo {
         width: 210px;
         height: 210px;
-        margin-left: 120px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        margin-left: 75px;
+        margin-top: 10px;
+        width: 250px;
       }
     }
   </style>

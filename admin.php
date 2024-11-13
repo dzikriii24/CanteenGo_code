@@ -70,12 +70,13 @@ updateStatistikPenjualan($conn);
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light" class="bg-[#F5C065]">
+<html lang="en" data-theme="light" class="bg-[#F5F7F8]">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening</title>
+  <link rel="icon" href="image/icon.png" type="image/png">
+  <title>Dashboard Admin</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -84,45 +85,45 @@ updateStatistikPenjualan($conn);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-[#F5C065]">
+<body class="bg-[#F5F7F8]">
   <style>
-     #btn-back:hover {
-      background-color: #F8EECB;
-      color: #D23D2D;
+    #btn-back:hover {
+      background-color: #F4CE14;
+      color: #D23D2D; 
     }
 
     #btn-back {
       background-color: #D23D2D;
-      color: white;
+      color: #F4CE14;
     }
   </style>
-<body class="bg-[#F5C065] h-screen">
+<body class="bg-[#F5F7F8] h-screen">
   <div class="flex h-full">
     <!-- Sidebar -->
-    <div class="md:w-56 w-full md:block hidden flex-col justify-between border-e bg-white flex-grow-0">
+    <div class="md:w-56 w-full md:block hidden flex-col justify-between border-e bg-[#495E57] flex-grow-0">
       <div>
-        <div class="bg-[#F5C065] w-full p-4">
+        <div class="bg-[#F5F7F8] w-full p-4">
           <span class="grid h-10 w-32 place-content-center rounded-lg text-xs text-gray-600">
-            <img alt="" src="image/cgso.png" class="size-20 object-cover" />
+            <img alt="" src="image/newlogo.png" class="size-20 w-full object-cover" />
           </span>
         </div>
 
         <ul class="mt-6 space-y-1">
           <li>
-            <a href="adminPenjualan.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek Penjualan</a>
+            <a href="adminPenjualan.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-[#F5F7F8] hover:text-[#F4CE14]">Cek Penjualan</a>
           </li>
           <li>
-            <a href="adminUser.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek User</a>
+            <a href="adminUser.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-[#F5F7F8] hover:text-[#F4CE14]">Cek User</a>
           </li>
           <li>
-            <a href="adminPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Promosi Produk</a>
+            <a href="adminPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-[#F5F7F8] hover:text-[#F4CE14]">Promosi Produk</a>
           </li>
           <li>
-            <a href="cekPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-[#31603D] hover:text-white">Cek Promosi Produk</a>
+            <a href="cekPromosi.php" class="block rounded-lg px-4 py-2 text-sm font-medium text-[#F5F7F8] hover:text-[#F4CE14]">Cek Promosi Produk</a>
           </li>
           <li>
             <details class="group [&_summary::-webkit-details-marker]:hidden">
-              <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-[#F5F7F8] hover:text-[#F4CE14]">
                 <span class="text-sm font-medium"> Akun </span>
                 <span class="shrink-0 transition duration-300 group-open:-rotate-180">
                   <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 20 20" fill="currentColor">
@@ -134,7 +135,7 @@ updateStatistikPenjualan($conn);
               <ul class="mt-2 space-y-1 px-4">
                 <li>
                   <form action="index.php" onclick="return confirmLogout();">
-                    <button type="submit" class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">Logout</button>
+                    <button type="submit" class="w-full rounded-lg px-4 py-2 text-sm font-medium text-[#F5F7F8] hover:text-[#F4CE14]">Logout</button>
                   </form>
                 </li>
               </ul>
@@ -144,12 +145,12 @@ updateStatistikPenjualan($conn);
       </div>
 
       <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 flex justify-betwen">
-        <a href="#" class="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+        <a href="admin.php" class="flex items-center gap-3 bg-[#F5F7F8] p-4">
           <img alt="" src="https://i.pinimg.com/736x/5c/20/53/5c205367a84b2c684f28c5f076954667.jpg" class="size-10 rounded-full object-cover" />
           <div>
             <p class="text-xs">
-              <strong class="block font-medium">Atmin CanteenGo</strong>
-              <span> Admin123@gmail.com </span>
+              <strong class="block font-medium text-[#45474B]">Atmin CanteenGo</strong>
+              <span class="text-[#495E57]"> Admin123@gmail.com </span>
             </p>
           </div>
         </a>
@@ -161,8 +162,8 @@ updateStatistikPenjualan($conn);
     <div class="flex-1 p-6 overflow-auto">
       
       <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-3xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-4xl">Dashboard</h2>
-        <h3 class="text-2xl text-[#D23D2D] mt-10 -mb-5 font-bold sm:text-2xl">Grafik Jumlah Penjualan & Jumlah Pengguna</h3>
+        <h2 class="text-3xl text-[#45474B] mt-3 -mb-5 font-bold sm:text-4xl">Dashboard</h2>
+        <h3 class="text-2xl text-[#495E57] mt-3 -mb-5 font-bold sm:text-2xl">Grafik Jumlah Penjualan & Jumlah Pengguna</h3>
       </div>
       <br><br>
       <!-- Content Table -->

@@ -51,6 +51,17 @@ if (!$produk) {
       background-color: #D23D2D;
       color: #F4CE14;
     }
+    @media (max-width: 768px){
+      #gambar {
+        margin-top: 50px;
+      }
+      #gbr2 {
+        width: 100%;
+      }
+      #detailP {
+        margin-top: 10px;
+      }
+    }
     
 </style>
 <body class="bg-[#F5F7F8]">
@@ -60,17 +71,17 @@ if (!$produk) {
 <br>
 <section>
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16" id="gambar">
       <div class="bg-[#495E57] relative h-64 overflow-hidden rounded-xl sm:h-80 lg:order-last lg:h-full">
-        <img alt="Produk" src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" class="flex justify-center items-center h-96 w-96 object-cover rounded-xl"/>
+        <img alt="Produk" src="<?php echo htmlspecialchars($produk['foto_produk']); ?>" class="flex justify-center items-center h-96 w-96 object-cover rounded-xl" id="gbr2"/>
       </div>
 
       <div class="lg:py-6 bg-[#F4CE14] px-12 rounded-xl">
-        <h2 class="text-3xl font-bold sm:text-4xl text-[#45474B]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
+        <h2 class="text-3xl font-bold sm:text-4xl text-[#45474B]" id="detailP"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
 
-        <p class="mt-4 text-[#495E57]"><?php echo htmlspecialchars($produk['deskripsi']); ?></p>
+        <p class="mt-4 text-[#495E57]" id="detailP"><?php echo htmlspecialchars($produk['deskripsi']); ?></p>
 
-        <p class="text-2xl font-bold sm:text-2xl mt-4 text-[#D23D2D]">Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
+        <p class="text-2xl font-bold sm:text-2xl mt-4 text-[#D23D2D]" id="detailP">Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
         
         <!-- Profil Penjual -->
         <div class="navbar mt-4">

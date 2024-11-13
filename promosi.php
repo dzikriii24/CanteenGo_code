@@ -44,6 +44,7 @@ input[type="number"]::-webkit-inner-spin-button,
     }
     
     @media (max-width: 768px){
+      
     #gambar{
         margin-left: 30px;
         margin-top: 10px;
@@ -59,6 +60,9 @@ input[type="number"]::-webkit-inner-spin-button,
         justify-content: center;
         text-align: center;
     }
+    #headline {
+      margin-top: 100px;
+    }
   }
 </style>
 
@@ -67,7 +71,7 @@ input[type="number"]::-webkit-inner-spin-button,
       Back
 </button>
 
-<div class="mx-auto max-w-lg text-center">
+<div class="mx-auto max-w-lg text-center" id="headline">
         <h2 class="text-3xl text-[#45474B] mt-10 -mb-5 font-bold sm:text-4xl">Promosikan Produk Anda!</h2>
         <p class="mt-10 text-[#495E57]" id="caption">
           Silahkan Isi Formulir Dibawah Ini Jika Ingin Mempromosikan Produk

@@ -115,6 +115,26 @@ if ($result->num_rows === 0) {
       margin-top: -120px;
       position: absolute;
     }
+    #details {
+      font-size: small;
+      width: 200px;
+      margin-top: -10px;
+    }
+    #akun {
+      margin-top: -20px;
+    }
+    #filters {
+      margin-top: -10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    #produkss {
+      flex: 1 1 calc(50% - 20px);  /* Membuat 2 kolom, mengurangi 20px untuk gap */
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+    }
   }
   .group:hover .group-hover\:opacity-100 {
     opacity: 1; /* Menampilkan teks saat hover */
@@ -179,8 +199,8 @@ if ($result->num_rows === 0) {
           <details class="group [&_summary::-webkit-details-marker]:hidden">
             <summary
               class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2">
-              <span class="text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"> Akun </span>
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+              <span class="text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="akun"> Akun </span>
+              <span class="shrink-0 transition duration-300 group-open:-rotate-180" id="akun">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-5"
@@ -197,33 +217,33 @@ if ($result->num_rows === 0) {
               <li>
                 <a
                   href="profileUser.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="details">
                   Profile Anda
                 </a>
               <li>
               <li>
                 <a
                   href="editProfile.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
                   Edit Profile
                 </a>
               <li>
                 <a
                   href="jualProduk.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
                   Jual Produk
                 </a>
               </li>
               <li>
                 <a
                   href="promosi.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
                   Promosi Produk
                 </a>
               </li>
             </ul>
           </details>
-          <a href="about.php"><span class="text-sm font-medium text-[#495E57] hover:text-[#D23D2D]">Tentang Aplikasi</span></a>
+          <a href="about.php"><span class="text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="details">Tentang Aplikasi</span></a>
         </div>
       </div>
     </div>
@@ -280,7 +300,7 @@ if ($result->num_rows === 0) {
 
   <br><br>
   <!-- Filter -->
-  <div class="place-content-center items-center flex justify-center mt-4 mb-2">
+  <div class="place-content-center items-center flex justify-center mt-4 mb-2" >
     <details
       class="w-50 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
       <summary
@@ -309,7 +329,7 @@ if ($result->num_rows === 0) {
         Reset
       </button>
     </header>
-    <ul class="space-y-1 border-t p-4">
+    <ul class="space-y-1 border-t p-4" id="filters">
       <li>
         <label for="FilterMakanan" class="inline-flex items-center gap-2">
           <input type="checkbox" name="jenis_produk[]" value="Makanan" id="FilterMakanan" class="size-5 rounded filter-checkbox" />
@@ -338,7 +358,7 @@ if ($result->num_rows === 0) {
   </div>
   <!-- Produk -->
   <br><br><br>
-  <section class="">
+  <section class="" id="produkss">
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
       <div class="mx-auto max-w-lg text-center">
         <h2 class="text-3xl text-[#45474B] font-bold sm:text-4xl">Pilih Kesukaanmu!</h2>

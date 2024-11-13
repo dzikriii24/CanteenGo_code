@@ -139,143 +139,125 @@ if (isset($_POST['submit'])) {
     background-color: #D23D2D;
       color: #F4CE14;
   }
+   @media (max-width: 768px) {
+      #gambar {
+        display: none;
+      }
+
+      .mx-52 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #inputEmail,
+      #inputPassword {
+        padding: 12px;
+      }
+
+      #btn-signin {
+        width: 100%;
+      }
+
+      #caption {
+        font-size: 0.875rem;
+      }
+    }
+
+    #btn-back:hover {
+      background-color: #F4CE14;
+      color: #D23D2D; 
+    }
+
+    #btn-back {
+      background-color: #D23D2D;
+      color: #F4CE14;
+    }
+    
 </style>
 
 <body class="bg-[#F5F7F8]">
-  <section>
-    <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md ">
-      Back
-    </button>
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-        <div class="lg:col-span-2 lg:py-12">
-          <div class="">
-            <a href="#" class="text-5xl font-bold text-[#45474B]"> Sign Up CanteenGo </a>
-            <br><br><br>
-            <img id="image" src="image/newlogo.png" class="h-52 w-52 mx-28" />
-            <p class="mt-2 not-italic text-center text-[#495E57]">Bergabunglah dengan CanteenGo sekarang dan nikmati kemudahan berbelanja makanan tanpa antre! Daftar segera untuk pengalaman yang lebih praktis!</p>
+<section class="relative p-4">
+  <button id="btn-back" onclick="goBack()" class="absolute top-4 left-4 px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+    Back
+  </button>
+
+  <div class="container mx-auto max-w-screen-lg px-4 py-10">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+      
+      <!-- Informasi dan Gambar -->
+      <div class="lg:col-span-2 flex flex-col items-center text-center lg:py-12">
+        <a href="#" class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#45474B]">Sign Up CanteenGo</a>
+        <img id="image" src="image/newlogo.png" class="h-40 w-40 sm:h-48 sm:w-48 lg:h-52 lg:w-52 mt-4" />
+        <p class="mt-4 text-[#495E57] text-sm sm:text-base">Bergabunglah dengan CanteenGo sekarang dan nikmati kemudahan berbelanja makanan tanpa antre! Daftar segera untuk pengalaman yang lebih praktis!</p>
+      </div>
+      
+      <!-- Formulir Pendaftaran -->
+      <div class="rounded-lg bg-[#495E57] p-6 sm:p-8 shadow-lg lg:col-span-3" id="formSignUp">
+        <form class="space-y-4" method="post" enctype="multipart/form-data">
+          
+          <!-- Username -->
+          <div>
+            <label class="sr-only" for="username">Username</label>
+            <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none" placeholder="Masukan Username" type="text" name="username" required id="username" />
           </div>
-        </div>
-        <div class="rounded-lg bg-[#495E57] p-8 shadow-lg lg:col-span-3 lg:p-12" id="formSignUp">
-          <form class="space-y-4" id="formSignUp" method="post" enctype="multipart/form-data">
+          
+          <!-- Password dan Konfirmasi Password -->
+          <div>
+            <label class="sr-only" for="password">Password</label>
+            <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none" placeholder="Masukan Password" type="password" name="password" required id="password" />
+          </div>
+          <div>
+            <label class="sr-only" for="upassword">Ulangi Password</label>
+            <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none" placeholder="Ulangi Password" type="password" name="upassword" required id="upassword" />
+          </div>
+
+          <!-- Foto Profil -->
+          <div>
+            <label class="sr-only" for="foto_profile">Foto Profile</label>
+            <p class="text-white text-sm mb-2">Masukan Foto Profile</p>
+            <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none" placeholder="Masukan Foto Profile" type="file" id="foto_profile" name="fotoprofile" required />
+          </div>
+
+          <!-- Email, WhatsApp, Instagram, Domisili -->
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label class="sr-only" for="name">Username</label>
-              <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57] outline-none "
-                placeholder="Masukan Username"
-                type="text"
-                name="username"
-                required
-                id="username" />
+              <label class="sr-only" for="email">Email</label>
+              <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8]" placeholder="Masukan Email" type="email" name="email" required id="email" />
             </div>
             <div>
-              <label class="sr-only" for="name">Password</label>
-              <input
-                name="password"
-                required
-                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
-                placeholder="Masukan Password"
-                type="password"
-                id="password" />
+              <label class="sr-only" for="nomerWA">Nomer WhatsApp</label>
+              <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8]" placeholder="Masukan Nomer WhatsApp" type="tel" name="nomerwa" required id="nomerWA" />
             </div>
-
             <div>
-              <label class="sr-only" for="name">Ulangi Password</label>
-              <input
-                name="upassword"
-                required
-                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
-                placeholder="Ulangi Password"
-                type="password"
-                id="upassword" />
+              <label class="sr-only" for="instagram">Username Instagram</label>
+              <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8]" placeholder="Masukan Username Instagram" type="text" name="userins" required id="instagram" />
             </div>
-
             <div>
-              <p class="text-white">Masukan Foto Profile</p>
-              <label class="sr-only" for="name">Ulangi Password</label>
-              <input
-                required
-                class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8] placeholder-[#495E57;] outline-none "
-                placeholder="Masukan Foto Profile"
-                type="file"
-                id="foto_profile" 
-                name="fotoprofile" 
-                />
+              <label class="sr-only" for="domisili">Domisili</label>
+              <input class="w-full rounded-lg p-3 text-sm bg-[#F5F7F8]" placeholder="Masukan Domisili" type="text" name="domisili" required id="domisili" />
             </div>
+          </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label class="sr-only" for="email">Email</label>
-                <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
-                  placeholder="Masukan Email"
-                  type="email"
-                  name="email"
-                  value="<?php echo $_POST['email']?>"
-                  required
-                  id="email" />
-              </div>
-
-              <div>
-                <label class="sr-only" for="phone">Nomer WhatsApp</label>
-                <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
-                  placeholder="Masukan Nomer WhatsApp"
-                  type="tel"
-                  name="nomerwa"
-                  value="<?php echo $_POST['nomerwa']?>"
-                  required
-                  id="nomerWA" />
-              </div>
-
-              <div>
-                <label class="sr-only" for="phone">Username Instagram</label>
-                <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
-                  placeholder="Masukan Username Instagram"
-                  type="text"
-                  name="userins"
-                  value="<?php echo $_POST['userins']?>"
-                  required
-                  id="instagram" />
-              </div>
-
-              <div>
-                <label class="sr-only" for="phone">Domisili</label>
-                <input
-                  class="w-full rounded-lg border-gray-200 p-3 text-sm bg-[#F5F7F8]"
-                  placeholder="Masukan Domisili"
-                  type="text"
-                  name="domisili"
-                  value="<?php echo $_POST['domisili']?>"
-                  required
-                  id="domisili" />
-              </div>
-            </div>
-            <div class="flex items-center justify-between text-white">
-        <p class="text-sm text-['#F5F7F8']" id="url-signin">
-            Sudah Punya Akun? <a class="underline hover:text-[#F4CE14]" href="login.php" id="url-signup">Sign In</a>
-        </p>
-    </div>
-
-            <a href="login.php">
-            <div class="mt-4">
-              
-              <button
-                type="submit"
-                id="btnSubmit"
-                name="submit"
-                class="inline-block w-full rounded-lg text-[#D23D2D] bg-[#F4CE14] px-5 py-3 font-medium sm:w-auto hover:bg-[#F8EECB]">
-                Sign Up
-              </button>
-              
-            </div>
-            </a>
-          </form>
-        </div>
+          <!-- Link ke Sign In dan Tombol Submit -->
+          <div class="flex flex-col sm:flex-row sm:justify-between items-center mt-4 text-white text-sm">
+            <p>Sudah Punya Akun? <a href="login.php" class="underline hover:text-[#F4CE14]">Sign In</a></p>
+          </div>
+          
+          <div class="mt-4">
+            <button type="submit" id="btnSubmit" name="submit" class="inline-block w-full rounded-lg bg-[#F4CE14] px-5 py-3 font-medium text-[#D23D2D] hover:bg-[#F8EECB]">
+              Sign Up
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
   <script>
     function goBack() {
       window.history.back();
