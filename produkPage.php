@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 
 $productID = $_GET['id'];
 // Query untuk mendapatkan detail produk
-$sqlProduk = "SELECT p.nama_produk, p.deskripsi, p.harga, p.foto_produk, u.username AS penjual, u.nomerwa, u.fotoprofile 
+$sqlProduk = "SELECT p.nama_produk, p.deskripsi, p.harga, p.foto_produk, p.nomer_wa, u.username AS penjual, u.nomerwa, u.fotoprofile 
               FROM produk p
               JOIN user u ON p.username_penjual = u.username
               WHERE p.id = ?";
@@ -107,7 +107,7 @@ if (!$produk) {
           </div>
         </div>
 
-        <a href="https://wa.me/<?php echo htmlspecialchars($produk['nomerwa']); ?>?text=Hallo%20<?php echo urlencode($produk['penjual']); ?>%2C%20saya%20tertarik%20dengan%20produk%20<?php echo urlencode($produk['nama_produk']); ?>%20yang%20Anda%20jual%20di%20CanteenGo."
+        <a href="https://wa.me/<?php echo htmlspecialchars($produk['nomer_wa']); ?>?text=Hallo%20<?php echo urlencode($produk['penjual']); ?>%2C%20saya%20tertarik%20dengan%20produk%20<?php echo urlencode($produk['nama_produk']); ?>%20yang%20Anda%20jual%20di%20CanteenGo."
           class="mt-28 inline-block rounded bg-[#D23D2D] px-8 mb-8 py-3 text-sm font-medium text-white transition hover:bg-[#495E57]">
           Hubungi Penjual
         </a>

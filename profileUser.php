@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
             <img src="<?php echo htmlspecialchars($rowProduk['foto_produk']); ?>" alt="Produk Image" class="w-full h-56 object-cover rounded-xl mb-4">
             <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo htmlspecialchars($rowProduk['nama_produk']); ?></h2>
             <p class="mt-1 text-sm text-[#495E57]"><?php echo htmlspecialchars($rowProduk['deskripsi']); ?></p>
-            <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo htmlspecialchars($rowProduk['harga']); ?></h2>
+            <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo number_format($rowProduk['harga'], 0, ',', '.'); ?></h2>
             <br>
             <div class="flex justify-center">
             <a href="produkPage.php?id=<?php echo $rowProduk['id']; ?>">

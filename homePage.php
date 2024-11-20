@@ -11,7 +11,6 @@ $results = $conn->query($sqlpromosi);
 
 $sqlLink = "SELECT nama_produk FROM promosi";
 $resultLink = $conn->query($sqlLink);
-$link = $resultLink->fetch_assoc();
 
 
 $sql = "SELECT id, nama_produk, foto_produk, deskripsi, harga, jenis_produk FROM produk WHERE status = 'approved' ";
@@ -286,14 +285,16 @@ if ($result->num_rows === 0) {
       <div class="carousel w-full place-content-center cursor-pointer">
       <div class="carousel w-full place-content-center cursor-pointer">
         <?php while ($row = $results->fetch_assoc()) : ?>
-            <div class="carousel-item w-full">
-                <a href="<?php echo $link['nama_produk']; ?>">
-                    <img src="<?php echo $row['foto_produks']; ?>" class="w-full h-72 rounded-xl" alt="<?php echo $row['nama_produk']; ?>" />
-                </a>
-            </div>
-        <?php endwhile; ?>
+    <?php $link = $resultLink->fetch_assoc(); ?>
+    <div class="carousel-item w-full">
+        <a href="<?php echo $link['nama_produk']; ?>">
+            <img src="<?php echo $row['foto_produks']; ?>" class="w-full h-72 rounded-xl" alt="<?php echo $row['nama_produk']; ?>" />
+        </a>
+    </div>
+<?php endwhile; ?>
     </div>
     </div>
+
       <!-- end -->
     </div>
   </div>
