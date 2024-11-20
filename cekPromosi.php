@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
   header("Location: index.php");
 }
 // Query untuk mengambil produk dengan status 'pending'
-$sql = "SELECT * FROM promosi";
+$sql = "SELECT * FROM promosi WHERE tanggal_berakhir >= CURDATE()";
 $result = $conn->query($sql);
 
 

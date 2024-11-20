@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
 if (isset($_GET['jenis_produk']) && !empty($_GET['jenis_produk'])) {
   // Sanitize input (checkbox values)
   $categories = $_GET['jenis_produk'];
-  $categories = array_map(function($category) {
+  $categories = array_map(function ($category) {
     return "'" . $category . "'";
   }, $categories);
 
@@ -87,6 +87,7 @@ if ($result->num_rows === 0) {
   #filter {
     position: absolute;
   }
+
   #search::placeholder {
     color: #495E57;
   }
@@ -114,58 +115,66 @@ if ($result->num_rows === 0) {
       margin-top: -120px;
       position: absolute;
     }
+
     #details {
       font-size: small;
       width: 200px;
       margin-top: -10px;
     }
+
     #akun {
       margin-top: -20px;
     }
+
     #filters {
       margin-top: -10px;
       display: flex;
       justify-content: center;
       gap: 10px;
     }
+
     #produkss {
-      flex: 1 1 calc(50% - 20px);  /* Membuat 2 kolom, mengurangi 20px untuk gap */
-  background-color: #f0f0f0;
-  padding: 20px;
-  text-align: center;
+      flex: 1 1 calc(50% - 20px);
+      /* Membuat 2 kolom, mengurangi 20px untuk gap */
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
     }
   }
+
   .group:hover .group-hover\:opacity-100 {
-    opacity: 1; /* Menampilkan teks saat hover */
-    transition-opacity: 200ms; /* Waktu transisi saat teks muncul */
-}
+    opacity: 1;
+    /* Menampilkan teks saat hover */
+    transition-opacity: 200ms;
+    /* Waktu transisi saat teks muncul */
+  }
 </style>
 
 <body class="bg-[#F5F7F8]">
   <div class="">
     <ul class="menu menu-horizontal rounded-box place-items-end flex justify-betwen" id="nav-menu">
       <li class="relative group inline-block">
-      <a class="group hover:bg-[#F5F7F8] relative" href="index.php" onclick="return confirmLogout();"id="log">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        color="#45474B"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2">
-        <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-    </svg>
-    <span class="absolute left-1/2 -translate-x-1/2 mt-2 rounded-md text-[#F4CE14] text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[#F4CE14]">
-        Logout
-    </span>
-</a>
+        <a class="group hover:bg-[#F5F7F8] relative" href="index.php" onclick="return confirmLogout();" id="log">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            color="#45474B"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span class="absolute left-1/2 -translate-x-1/2 mt-2 rounded-md text-[#F4CE14] text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[#F4CE14]">
+            Logout
+          </span>
+        </a>
 
         <!-- Tooltip -->
-        
+
       </li>
 
       <li>
@@ -223,20 +232,20 @@ if ($result->num_rows === 0) {
               <li>
                 <a
                   href="editProfile.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="details">
                   Edit Profile
                 </a>
               <li>
                 <a
                   href="jualProduk.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="details">
                   Jual Produk
                 </a>
               </li>
               <li>
                 <a
                   href="promosi.php"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]"  id="details">
+                  class="block rounded-lg px-4 py-2 text-sm font-medium text-[#495E57] hover:text-[#D23D2D]" id="details">
                   Promosi Produk
                 </a>
               </li>
@@ -257,51 +266,49 @@ if ($result->num_rows === 0) {
     </span>
     <div class="rounded-xl">
       <form action="search.php" method="POST">
-      <div class="place-content-center items-center flex justify-center" id="">
-        <label class="input input-bordered flex items-center mt-4 w-50 text-[#D23D2D]" id="search">
-          <input type="text" class="grow " placeholder="Mau cari apa?" id="" name="query" />
-          <button type="submit" class="mx-3 text-[#495E57]">Cari</button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            color="#495E57"
-            class="h-4 w-4 opacity-70">
-            <path
-              fill-rule="evenodd"
-              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-              clip-rule="evenodd" />
-          </svg>
-          
-        </label>
+        <div class="place-content-center items-center flex justify-center" id="">
+          <label class="input input-bordered flex items-center mt-4 w-50 text-[#D23D2D]" id="search">
+            <input type="text" class="grow " placeholder="Mau cari apa?" id="" name="query" />
+            <button type="submit" class="mx-3 text-[#495E57]">Cari</button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              color="#495E57"
+              class="h-4 w-4 opacity-70">
+              <path
+                fill-rule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip-rule="evenodd" />
+            </svg>
 
-      </div>
+          </label>
+
+        </div>
       </form>
-      
+
       <!-- end -->
       <br>
       <!-- Promotion -->
-      </div>
-      <div class="carousel w-full place-content-center cursor-pointer">
-      <div class="carousel w-full place-content-center cursor-pointer">
-        <?php while ($row = $results->fetch_assoc()) : ?>
-    <?php $link = $resultLink->fetch_assoc(); ?>
-    <div class="carousel-item w-full">
-        <a href="<?php echo $link['nama_produk']; ?>">
+    </div>
+    <div class="carousel w-full place-content-center cursor-pointer">
+      <?php while ($row = $results->fetch_assoc()) : ?>
+        <?php $link = $resultLink->fetch_assoc(); ?>
+        <div class="carousel-item w-full">
+          <a href="<?php echo $link['nama_produk']; ?>">
             <img src="<?php echo $row['foto_produks']; ?>" class="w-full h-72 rounded-xl" alt="<?php echo $row['nama_produk']; ?>" />
-        </a>
-    </div>
-<?php endwhile; ?>
-    </div>
+          </a>
+        </div>
+      <?php endwhile; ?>
     </div>
 
-      <!-- end -->
-    </div>
+    <!-- end -->
+  </div>
   </div>
 
   <br><br>
   <!-- Filter -->
-  <div class="place-content-center items-center flex justify-center mt-4 mb-2" >
+  <div class="place-content-center items-center flex justify-center mt-4 mb-2">
     <details
       class="w-50 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
       <summary
@@ -323,36 +330,36 @@ if ($result->num_rows === 0) {
       </summary>
 
       <form method="GET" action="filter.php">
-  <div id="filter">
-    <header class="flex items-center justify-between p-4">
-      <span id="selected-count" class="text-sm text-[#45474B]">0 Terpilih</span>
-      <button id="reset-button" type="reset" class="text-sm text-[#45474B] underline underline-offset-4 mx-10">
-        Reset
-      </button>
-    </header>
-    <ul class="space-y-1 border-t p-4" id="filters">
-      <li>
-        <label for="FilterMakanan" class="inline-flex items-center gap-2">
-          <input type="checkbox" name="jenis_produk[]" value="Makanan" id="FilterMakanan" class="size-5 rounded filter-checkbox" />
-          <span class="text-sm font-medium text-[#495E57]">Makanan</span>
-        </label>
-      </li>
-      <li>
-        <label for="FilterMinuman" class="inline-flex items-center gap-2">
-          <input type="checkbox" name="jenis_produk[]" value="Minuman" id="FilterMinuman" class="size-5 rounded filter-checkbox" />
-          <span class="text-sm font-medium text-[#495E57]">Minuman</span>
-        </label>
-      </li>
-      <li>
-        <label for="FilterDessert" class="inline-flex items-center gap-2">
-          <input type="checkbox" name="jenis_produk[]" value="Dessert" id="FilterDessert" class="size-5 rounded filter-checkbox" />
-          <span class="text-sm font-medium text-[#495E57]">Dessert</span>
-        </label>
-      </li>
-    </ul>
-  </div>
-  <button type="submit" class="hidden"></button> <!-- Submit button for form -->
-</form>
+        <div id="filter">
+          <header class="flex items-center justify-between p-4">
+            <span id="selected-count" class="text-sm text-[#45474B]">0 Terpilih</span>
+            <button id="reset-button" type="reset" class="text-sm text-[#45474B] underline underline-offset-4 mx-10">
+              Reset
+            </button>
+          </header>
+          <ul class="space-y-1 border-t p-4" id="filters">
+            <li>
+              <label for="FilterMakanan" class="inline-flex items-center gap-2">
+                <input type="checkbox" name="jenis_produk[]" value="Makanan" id="FilterMakanan" class="size-5 rounded filter-checkbox" />
+                <span class="text-sm font-medium text-[#495E57]">Makanan</span>
+              </label>
+            </li>
+            <li>
+              <label for="FilterMinuman" class="inline-flex items-center gap-2">
+                <input type="checkbox" name="jenis_produk[]" value="Minuman" id="FilterMinuman" class="size-5 rounded filter-checkbox" />
+                <span class="text-sm font-medium text-[#495E57]">Minuman</span>
+              </label>
+            </li>
+            <li>
+              <label for="FilterDessert" class="inline-flex items-center gap-2">
+                <input type="checkbox" name="jenis_produk[]" value="Dessert" id="FilterDessert" class="size-5 rounded filter-checkbox" />
+                <span class="text-sm font-medium text-[#495E57]">Dessert</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <button type="submit" class="hidden"></button> <!-- Submit button for form -->
+      </form>
 
     </details>
     <!-- end -->
@@ -365,33 +372,33 @@ if ($result->num_rows === 0) {
         <h2 class="text-3xl text-[#45474B] font-bold sm:text-4xl">Pilih Kesukaanmu!</h2>
       </div>
       <div class="container mx-auto text-center pt-6">
-      <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    <?php foreach ($produk_list as $produk) : ?>
-        <div class="bg-[#F4CE14] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
-            <img src="<?php echo $produk['foto_produk']; ?>" alt="<?php echo $produk['nama_produk']; ?>" class="w-full h-56 object-cover rounded-xl mb-4">
+        <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <?php foreach ($produk_list as $produk) : ?>
+            <div class="bg-[#F4CE14] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
+              <img src="<?php echo $produk['foto_produk']; ?>" alt="<?php echo $produk['nama_produk']; ?>" class="w-full h-56 object-cover rounded-xl mb-4">
 
-            <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo $produk['nama_produk']; ?></h2>
+              <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo $produk['nama_produk']; ?></h2>
 
-            <p class="mt-1 text-sm text-[#495E57]">
+              <p class="mt-1 text-sm text-[#495E57]">
                 <?php echo $produk['deskripsi']; ?>
-            </p>
+              </p>
 
-            <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></h2>
-            <br>
-            <a href="produkPage.php?id=<?php echo $produk['id']; ?>">
+              <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo number_format($produk['harga'], 0, ',', '.'); ?></h2>
+              <br>
+              <a href="produkPage.php?id=<?php echo $produk['id']; ?>">
                 <button class="inline-block rounded-lg px-5 py-2 text-sm font-medium bg-[#D23D2D] text-[#F5F7F8] transition hover:bg-[#495E57]">Beli</button>
-            </a>
+              </a>
+            </div>
+          <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-</div>  
-    </div>
+      </div>
   </section>
   <!-- end -->
-   <script>
-     function confirmLogout() {
-    return confirm("Apakah Anda yakin ingin log out?");
-}
-   </script>
+  <script>
+    function confirmLogout() {
+      return confirm("Apakah Anda yakin ingin log out?");
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 

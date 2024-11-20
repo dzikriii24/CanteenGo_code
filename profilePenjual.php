@@ -132,7 +132,7 @@ $resultProduk = $stmtProduk->get_result();
       <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <?php while ($rowProduk = $resultProduk->fetch_assoc()): ?>
           <div class="bg-[#F4CE14] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
-            <img src="<?php echo htmlspecialchars($rowProduk['foto_produk']); ?>" alt="Produk Image" class="rounded-xl h-56 w-full">
+            <img src="<?php echo htmlspecialchars($rowProduk['foto_produk']); ?>" alt="Produk Image" class="w-full h-56 object-cover rounded-xl mb-4">
             <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo htmlspecialchars($rowProduk['nama_produk']); ?></h2>
             <p class="mt-1 text-sm text-[#495E57]"><?php echo htmlspecialchars($rowProduk['deskripsi']); ?></p>
             <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo number_format($rowProduk['harga'], 0, ',', '.'); ?></h2>

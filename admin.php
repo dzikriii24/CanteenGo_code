@@ -8,15 +8,16 @@ if (!isset($_SESSION['username'])) {
   header("Location: index.php");
 }
 
-
-// Ambil data pengguna dan penjualan per bulan dan tahun
+// Ambil data pengguna, penjualan, dan promosi per bulan dan tahun
 $pengguna_data = $conn->query("SELECT bulan, tahun, jumlah_pengguna FROM statistik_pengguna ORDER BY tahun, bulan");
 $penjualan_data = $conn->query("SELECT bulan, tahun, jumlah_penjualan FROM statistik_penjualan ORDER BY tahun, bulan");
+$promosi_data = $conn->query("SELECT bulan, tahun, jumlah_promosi FROM statistik_promosi ORDER BY tahun, bulan");
 
 // Format data untuk Chart.js
 $bulan_array = [];
 $pengguna_array = [];
 $penjualan_array = [];
+$promosi_array = [];
 
 while ($row = $pengguna_data->fetch_assoc()) {
   $bulan_array[] = $row['bulan'] . "-" . $row['tahun'];
@@ -27,7 +28,11 @@ while ($row = $penjualan_data->fetch_assoc()) {
   $penjualan_array[] = $row['jumlah_penjualan'];
 }
 
+while ($row = $promosi_data->fetch_assoc()) {
+  $promosi_array[] = $row['jumlah_promosi'];
+}
 
+// Fungsi untuk memperbarui statistik pengguna
 function updateStatistikPengguna($conn) {
   $sql = "
       INSERT INTO statistik_pengguna (bulan, tahun, jumlah_pengguna)
@@ -35,18 +40,30 @@ function updateStatistikPengguna($conn) {
       FROM user
       GROUP BY YEAR(tanggal_daftar), MONTH(tanggal_daftar)
       ON DUPLICATE KEY UPDATE jumlah_pengguna = VALUES(jumlah_pengguna);
-      
   ";
 
-  if ($conn->query($sql) === TRUE) {
-  } else {
+  if (!$conn->query($sql)) {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
+
+// Fungsi untuk memperbarui statistik promosi
+function updateStatistikPromosi($conn) {
+  $sql = "
+      INSERT INTO statistik_promosi (bulan, tahun, jumlah_promosi)
+      SELECT MONTH(tanggal_mulai) AS bulan, YEAR(tanggal_mulai) AS tahun, COUNT(*) AS jumlah_promosi
+      FROM promosi
+      GROUP BY YEAR(tanggal_mulai), MONTH(tanggal_mulai)
+      ON DUPLICATE KEY UPDATE jumlah_promosi = VALUES(jumlah_promosi);
+  ";
+
+  if (!$conn->query($sql)) {
       echo "Error: " . $sql . "<br>" . $conn->error;
   }
 }
 
 // Fungsi untuk memperbarui statistik penjualan
 function updateStatistikPenjualan($conn) {
-  // Query untuk menghitung penjualan bulanan berdasarkan tanggal upload
   $sql = "
       INSERT INTO statistik_penjualan (bulan, tahun, jumlah_penjualan)
       SELECT MONTH(tanggal_diupload) AS bulan, YEAR(tanggal_diupload) AS tahun, COUNT(*) AS jumlah_penjualan
@@ -56,16 +73,15 @@ function updateStatistikPenjualan($conn) {
       ON DUPLICATE KEY UPDATE jumlah_penjualan = VALUES(jumlah_penjualan);
   ";
 
-  if ($conn->query($sql) === TRUE) {
-  } else {
+  if (!$conn->query($sql)) {
       echo "Error: " . $sql . "<br>" . $conn->error;
   }
 }
 
-
 // Panggil fungsi untuk memperbarui statistik
 updateStatistikPengguna($conn);
 updateStatistikPenjualan($conn);
+updateStatistikPromosi($conn);
 
 ?>
 
@@ -79,24 +95,11 @@ updateStatistikPenjualan($conn);
   <title>Dashboard Admin</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="bg-[#F5F7F8]">
-  <style>
-    #btn-back:hover {
-      background-color: #F4CE14;
-      color: #D23D2D; 
-    }
-
-    #btn-back {
-      background-color: #D23D2D;
-      color: #F4CE14;
-    }
-  </style>
 <body class="bg-[#F5F7F8] h-screen">
   <div class="flex h-full">
     <!-- Sidebar -->
@@ -157,75 +160,65 @@ updateStatistikPenjualan($conn);
       </div>
     </div>
 
-    <!-- Main Content (Right Side) -->
-     
+    <!-- Main Content -->
     <div class="flex-1 p-6 overflow-auto">
-      
       <div class="mx-auto max-w-lg text-center">
         <h2 class="text-3xl text-[#45474B] mt-3 -mb-5 font-bold sm:text-4xl">Dashboard</h2>
-        <h3 class="text-2xl text-[#495E57] mt-3 -mb-5 font-bold sm:text-2xl">Grafik Jumlah Penjualan & Jumlah Pengguna</h3>
+        <h3 class="text-2xl text-[#495E57] mt-3 -mb-5 font-bold sm:text-2xl">Grafik Jumlah Pengguna, Penjualan & Promosi</h3>
       </div>
       <br><br>
-      <!-- Content Table -->
       <canvas id="chart"></canvas>
 
-<script>
-  // Ambil data dari PHP
-  const labels = <?php echo json_encode($bulan_array); ?>;
-  const penggunaData = <?php echo json_encode($pengguna_array); ?>;
-  const penjualanData = <?php echo json_encode($penjualan_array); ?>;
+      <script>
+        const labels = <?php echo json_encode($bulan_array); ?>;
+        const penggunaData = <?php echo json_encode($pengguna_array); ?>;
+        const penjualanData = <?php echo json_encode($penjualan_array); ?>;
+        const promosiData = <?php echo json_encode($promosi_array); ?>;
 
-  const ctx = document.getElementById('chart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Pengguna',
-          data: penggunaData,
-          borderColor: 'rgba(94, 179, 68, 1)',
-          backgroundColor: 'rgba(94, 179, 68, 0.2)',
-          fill: true,
-        },
-        {
-          label: 'Penjualan',
-          data: penjualanData,
-          borderColor: 'rgba(210, 61, 45, 1)',
-          backgroundColor: 'rgba(210, 61, 45, 0.2)',
-          fill: true,
-        },
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: { display: true, text: 'Bulan-Tahun' }
-        },
-        y: {
-          title: { display: true, text: 'Jumlah' }
-        }
-      }
-    }
-  });
-</script>
-
-
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Pengguna',
+                data: penggunaData,
+                borderColor: 'rgba(94, 179, 68, 1)',
+                backgroundColor: 'rgba(94, 179, 68, 0.2)',
+                fill: true,
+              },
+              {
+                label: 'Penjualan',
+                data: penjualanData,
+                borderColor: 'rgba(210, 61, 45, 1)',
+                backgroundColor: 'rgba(210, 61, 45, 0.2)',
+                fill: true,
+              },
+              {
+                label: 'Promosi',
+                data: promosiData,
+                borderColor: 'rgba(0, 0, 255, 1)',
+                backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                fill: true,
+              },
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: { display: true, text: 'Bulan-Tahun' }
+              },
+              y: {
+                title: { display: true, text: 'Jumlah' }
+              }
+            }
+          }
+        });
+      </script>
     </div>
   </div>
-
-  <!-- Script for mobile menu toggle -->
-  <script>
-    document.getElementById('menu-button').addEventListener('click', function() {
-      const sidebar = document.querySelector('.md\\:w-56');
-      sidebar.classList.toggle('hidden');
-    });
-    function confirmLogout() {
-    return confirm("Apakah Anda yakin ingin log out?");
-}
-  </script>
-
 </body>
 
 </html>
