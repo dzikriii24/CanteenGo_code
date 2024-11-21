@@ -11,6 +11,9 @@ if (!isset($_SESSION['username'])) {
 $sql = "SELECT * FROM produk WHERE status = 'pending'";
 $result = $conn->query($sql);
 
+$sqlProduk = "SELECT * FROM produk";
+$produk = $conn->query($sqlProduk);
+
 
 ?>
 
@@ -107,6 +110,7 @@ $result = $conn->query($sql);
       
       <div class="mx-auto max-w-lg text-center">
         <h2 class="text-3xl text-[#45474B] mt-3 -mb-5 font-bold sm:text-4xl">Check Penjualan</h2>
+        <h3 class="text-2xl text-[#45474B] mt-10 -mb-5 font-bold sm:text-2xl">Produk yang Menunggu Persetujuan</h3>
         <a href="admin.php">
         <button id="btn-back" class="absolute top-4 left-60 px-4 py-2 rounded-md ">
       Dashboard
@@ -163,6 +167,57 @@ $result = $conn->query($sql);
     </tbody>
   </table>
 </div>
+<div class="overflow-x-auto mt-10">
+  <table class="table w-full border border-[#495E57]" id="userTable">
+    <thead>
+      <tr class="text-center bg-[#F4CE14]">
+      <th class="text-[#45474B] border-b border-[#495E57]">Nama Produk & Foto Produk</th>
+        <th class="text-[#45474B] border-b border-[#495E57]">Jenis Produk</th>
+        <th class="text-[#45474B] border-b border-[#495E57]">Harga</th>
+        <th class="text-[#45474B] border-b border-[#495E57]">Deskripsi</th>
+        <th class="text-[#45474B] border-b border-[#495E57]">Hapus Produk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php while($row = $produk->fetch_assoc()) { ?>
+        <tr class="text-center bg-white">
+          <!-- Foto Profile -->
+          <td class="border-b border-[#495E57]">
+            <div class="flex items-center justify-center gap-3">
+              <div class="avatar">
+                <div class="rounded-lg h-16 w-16">
+                  <img src="<?= $row['foto_produk']; ?>" alt="Avatar">
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <!-- Nama Penjual -->
+          <td class="text-[#495E57] border-b border-[#495E57]">
+            <div class="font-bold"><?= $row['nama_produk']; ?></div>
+            <div class="text-sm opacity-50"><?= $row['jenis_produk']; ?></div>
+          </td>
+
+          <!-- Instagram -->
+          <td class="text-[#495E57] border-b border-[#495E57]"><?= $row['harga']; ?></td>
+
+          <!-- WhatsApp Number -->
+          <td class="text-[#495E57] border-b border-[#495E57]"><?= $row['deskripsi']; ?></td>
+
+          <!-- Detail (Lihat Profile dan Hapus Profile) -->
+          <td class="border-b border-[#495E57]">
+            <div class="mt-4 flex flex-wrap gap-4 text-center">
+              <form method="post" action="deleteProduk.php" onclick="return hapusProduk();">
+                <input type="hidden" name="produk_id" value="<?= $row['id']; ?>">
+                <button type="submit" name="delete" class="block w-42 rounded px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700">Hapus Produk</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+</div>
 
     </div>
   </div>
@@ -181,6 +236,9 @@ function tolakProduk() {
 }
 function accProduk() {
   return confirm("Apakah Anda yakin ingin menerima produk ini?");
+}
+function hapusProduk() {
+  return confirm("Apakah Anda yakin ingin menghapus Produk ini?");
 }
   </script>
 
