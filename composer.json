@@ -1,0 +1,17 @@
+{
+    "name": "dzikri/canteen-go",
+    "description": "web canteen",
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dzikri\\CanteenGo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dzikri"
+        }
+    ]
+}

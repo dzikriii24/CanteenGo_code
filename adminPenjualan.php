@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 $sql = "SELECT * FROM produk WHERE status = 'pending'";
 $result = $conn->query($sql);
 
-$sqlProduk = "SELECT * FROM produk";
+$sqlProduk = "SELECT * FROM produk WHERE status = 'approved'";
 $produk = $conn->query($sqlProduk);
 
 

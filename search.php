@@ -74,6 +74,15 @@ if (!isset($_SESSION['username'])) {
       position: absolute;
     }
   }
+  #produk-deskripsi {
+    height: 60px; /* Atur tinggi maksimal deskripsi */
+    overflow: hidden; /* Sembunyikan teks yang melampaui */
+    text-overflow: ellipsis; /* Tambahkan tiga titik di akhir teks */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Batasi jumlah baris (3 baris) */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
 </style>
 
 
@@ -166,7 +175,7 @@ if (!empty($produk_list)) : ?>
 
                 <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo htmlspecialchars($produk['nama_produk']); ?></h2>
 
-                <p class="mt-1 text-sm text-[#495E57]">
+                <p class="mt-1 text-sm text-[#495E57]" id="produk-deskripsi">
                     <?php echo htmlspecialchars($produk['deskripsi']); ?>
                 </p>
 

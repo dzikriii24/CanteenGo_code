@@ -177,12 +177,12 @@ if (isset($_POST['submit'])) {
         </p>
     </div>
 </form>
-    </div>
-
+</div>
     <div class="relative h-full w-full sm:h-full lg:h-full lg:w-1/2">
       <img alt="" id="gambar" src="image/gbli.png" class="absolute inset-0 h-full w-full object-cover pb-2" />
     </div>
   </section>
+  
   <script>
     function goBack() {
       window.history.back();

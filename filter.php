@@ -125,6 +125,15 @@ if ($result->num_rows > 0) {
     opacity: 1; /* Menampilkan teks saat hover */
     transition-opacity: 200ms; /* Waktu transisi saat teks muncul */
 }
+#produk-deskripsi {
+    height: 60px; /* Atur tinggi maksimal deskripsi */
+    overflow: hidden; /* Sembunyikan teks yang melampaui */
+    text-overflow: ellipsis; /* Tambahkan tiga titik di akhir teks */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Batasi jumlah baris (3 baris) */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
 </style>
 
 <body class="bg-[#F5F7F8]">
@@ -343,7 +352,7 @@ if ($result->num_rows > 0) {
         <img src="<?php echo $produk['foto_produk']; ?>" alt="<?php echo $produk['nama_produk']; ?>" class="w-full h-56 object-cover rounded-xl mb-4">
             <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo $produk['nama_produk']; ?></h2>
 
-            <p class="mt-1 text-sm text-[#495E57]">
+            <p class="mt-1 text-sm text-[#495E57]" id="produk-deskripsi">
             <?php echo $produk['deskripsi']; ?>
             </p>
 

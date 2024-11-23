@@ -61,6 +61,15 @@ $resultProduk = $stmtProduk->get_result();
       background-color: #D23D2D;
       color: #F4CE14;
     }
+    #produk-deskripsi {
+    height: 60px; /* Atur tinggi maksimal deskripsi */
+    overflow: hidden; /* Sembunyikan teks yang melampaui */
+    text-overflow: ellipsis; /* Tambahkan tiga titik di akhir teks */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Batasi jumlah baris (3 baris) */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
 </style>
 <body class="bg-[#F5F7F8]">
 
@@ -134,7 +143,7 @@ $resultProduk = $stmtProduk->get_result();
           <div class="bg-[#F4CE14] block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
             <img src="<?php echo htmlspecialchars($rowProduk['foto_produk']); ?>" alt="Produk Image" class="w-full h-56 object-cover rounded-xl mb-4">
             <h2 class="mt-4 text-xl font-bold text-[#45474B]"><?php echo htmlspecialchars($rowProduk['nama_produk']); ?></h2>
-            <p class="mt-1 text-sm text-[#495E57]"><?php echo htmlspecialchars($rowProduk['deskripsi']); ?></p>
+            <p class="mt-1 text-sm text-[#495E57]" id="produk-deskripsi"><?php echo htmlspecialchars($rowProduk['deskripsi']); ?></p>
             <h2 class="mt-4 text-l font-bold text-[#D23D2D]">Rp. <?php echo number_format($rowProduk['harga'], 0, ',', '.'); ?></h2>
             <br>
             <a href="produkPage.php?id=<?php echo $rowProduk['id']; ?>">

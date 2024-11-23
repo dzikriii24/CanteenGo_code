@@ -2,6 +2,15 @@
 
 include 'conect.php';
 
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
+$mail->SMTPDebug = 2;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $new_password = md5($_POST['new_password']); // Password baru dienkripsi dengan md5
@@ -10,9 +19,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "SELECT * FROM user WHERE email='$email'";
   $result = mysqli_query($conn, $sql);
 
-  if ($result->num_rows > 0) {
+  if (mysqli_num_rows($result) > 0) {
     // Jika email ditemukan, update password
+    $otp_code = rand(100000, 999999);
     $update_sql = "UPDATE user SET password='$new_password' WHERE email='$email'";
+    $sqlOTP = "UPDATE user SET otp_code='$otp_code', is_verified=0 WHERE email='$email'";
+    
+    if (mysqli_query($conn, $sqlOTP)) {
+      // Send OTP Email
+      try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'canteengoo@gmail.com';  // Ganti dengan alamat email Anda
+        $mail->Password   = 'lspc porg znnt pvly';   // Ganti dengan password atau App Password Anda
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // TLS
+        $mail->Port       = 587;  // Port untuk TLS
+        
+        $mail->setFrom('canteengoo@gmail.com', 'CanteenGo');
+        $mail->addAddress($email);  // Hanya mengirim ke email yang dimasukkan
+        
+        $mail->isHTML(true);
+        $mail->Subject = 'Kode OTP Lupa Password';
+        $mail->Body = "<h1>Hallo CanteenLovers</h1>
+                       <h2>Gunakan Kode OTP Berikut Untuk Memulihkan Password</h2>
+                       <h2>$otp_code</h2>
+                       <p>Masukkan kode OTP yang telah kami kirimkan ke email Anda untuk memulihkan kata sandi Anda. Pastikan kode dimasukkan dengan benar agar Anda dapat membuat kata sandi baru dan kembali mengakses akun Anda!</p>";
+
+        if ($mail->send()) {
+          echo "<script>alert('Password Berhasil Diubah. Silakan cek email Anda untuk kode OTP.'); window.location.href='verify.php?email=$email';</script>";
+        } else {
+          echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+        }
+      } catch (Exception $e) {
+        echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+      }
+    } else {
+      echo "<script>alert('Terjadi kesalahan saat memperbarui data OTP. Silakan coba lagi.');</script>";
+    }
+
     if (mysqli_query($conn, $update_sql)) {
       echo "<script>alert('Password berhasil diubah! Silahkan login dengan password baru.'); window.location.href='login.php';</script>";
     } else {
@@ -24,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     #inputEmail,
     #inputPassword {
       background-color: #F5F7F8;
-      border: 2px solid #495E57;  
+      border: 2px solid #495E57;
       outline: none;
       color: #D23D2D;
     }
@@ -86,7 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       color: #D23D2D;
     }
 
-    /* Responsive behavior */
     @media (max-width: 768px) {
       #gambar {
         display: none;
@@ -117,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     #btn-back:hover {
       background-color: #F4CE14;
-      color: #D23D2D; 
+      color: #D23D2D;
     }
 
     #btn-back {
@@ -141,33 +184,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <form action="forgotPassword.php" method="POST" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
-  <div>
-    <label for="email" class="sr-only">Email</label>
-    <div class="relative">
-      <input type="email" name="email" id="inputEmail" class="w-full rounded-lg p-4 pe-10" placeholder="Masukan Email" required />
+        <div>
+          <label for="email" class="sr-only">Email</label>
+          <div class="relative">
+            <input type="email" name="email" id="inputEmail" class="w-full rounded-lg p-4 pe-10" placeholder="Masukan Email" required />
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="sr-only">Password Baru</label>
+          <div class="relative">
+            <input type="password" name="new_password" id="inputPassword" class="w-full rounded-lg p-4 pe-10" placeholder="Masukan Password Baru" required />
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button type="submit" id="btn-signin" class="inline-block rounded-lg px-5 py-3 text-sm font-medium">
+            Submit
+          </button>
+        </div>
+      </form>
+
     </div>
-  </div>
-
-  <div>
-    <label for="password" class="sr-only">Password Baru</label>
-    <div class="relative">
-      <input type="password" name="new_password" id="inputPassword" class="w-full rounded-lg p-4 pe-10" placeholder="Masukan Password Baru" required />
-    </div>
-  </div>
-
-  <div class="flex items-center justify-between">
-    <button type="submit" id="btn-signin" class="inline-block rounded-lg px-5 py-3 text-sm font-medium">
-      Submit
-    </button>
-  </div>
-</form>
-
-    </div>
-
-    <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
-      <img alt="" id="gambar" src="image/wgc.png" />
+    <div class="relative h-full w-full sm:h-full lg:h-full lg:w-1/2">
+      <img alt="" id="gambar" src="image/gbli.png" class="absolute inset-0 h-full w-full object-cover pb-2" />
     </div>
   </section>
+
   <script>
     function goBack() {
       window.history.back();

@@ -1,78 +1,112 @@
 <?php
 include "conect.php";
 
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
+$mail->SMTPDebug = 2;  // Mengaktifkan debugging untuk melihat proses SMTP
+
+
 error_reporting(0);
 
 session_start();
 
+
+
 if (isset($_SESSION['username'])) {
   header("location:login.php");
 }
+
 if (isset($_POST['submit'])) {
-  $username = $_POST['username'];
-  $email = $_POST['email'];
+  $username = $_POST['username'] ?? '';
+  $email = $_POST['email'] ?? '';
   $password = md5($_POST['password']);
   $upassword = md5($_POST['upassword']);
   $domisili = $_POST['domisili'];
   $nomerwa = $_POST['nomerwa'];
   $userins = $_POST['userins'];
 
+  // Handle foto profil
   if (isset($_FILES['fotoprofile'])) {
-    $file_name = $_FILES['fotoprofile']['name'];
-    $file_tmp = $_FILES['fotoprofile']['tmp_name'];
-    $file_size = $_FILES['fotoprofile']['size'];
-    $file_error = $_FILES['fotoprofile']['error'];
+      $file_name = $_FILES['fotoprofile']['name'];
+      $file_tmp = $_FILES['fotoprofile']['tmp_name'];
+      $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+      $allowed_extensions = ['jpg', 'jpeg', 'png'];
 
-    // File validation
-    $allowed_extensions = ['jpg', 'jpeg', 'png'];
-    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-    if (in_array($file_ext, $allowed_extensions)) {
-        // Generate a unique file name to prevent overwriting
-        $new_file_name = uniqid('', true) . '.' . $file_ext;
-        $upload_dir = 'uploads/';  // Folder where you want to save the file
-
-        // Move file to the server folder
-        if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
-            $foto_profile = $upload_dir . $new_file_name;
-        } else {
-            echo "<script>alert('Gagal mengupload foto profile.');</script>";
-        }
-    } else {
-        echo "<script>alert('Hanya file jpg, jpeg, dan png yang diperbolehkan.');</script>";
-    }
-}
-
+      if (in_array($file_ext, $allowed_extensions)) {
+          $new_file_name = uniqid('', true) . '.' . $file_ext;
+          $upload_dir = 'uploads/';
+          if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
+              $foto_profile = $upload_dir . $new_file_name;
+          } else {
+              echo "<script>alert('Gagal mengupload foto profile.');</script>";
+          }
+      } else {
+          echo "<script>alert('Hanya file jpg, jpeg, dan png yang diperbolehkan.');</script>";
+      }
+  }
 
   if ($password == $upassword) {
-    $sql = "SELECT * FROM user WHERE email = '$email'";
-
-    $result = mysqli_query($conn, $sql);
-
-    if (!$result->num_rows > 0) {
-      $sql = "INSERT INTO user (username, email, password, domisili, nomerwa, userins, fotoprofile)
-            VALUES ('$username', '$email', '$password', '$domisili', '$nomerwa', '$userins', '$foto_profile')";
+      $sql = "SELECT * FROM user WHERE email = '$email'";
       $result = mysqli_query($conn, $sql);
-      if ($result) {
-        echo "<script>
-                alert ('Pendaftaran Berhasil, Silahkan Login')
-                </script>";
-        $username = "";
-        $email = "";
-        $_POST['password'] = "";
-        $_POST['upassword'] = "";
+
+      if (!$result->num_rows > 0) {
+          // Generate OTP
+          $otp_code = rand(100000, 999999);
+
+          // Insert user data
+          $sql = "INSERT INTO user (username, email, password, domisili, nomerwa, userins, fotoprofile, otp_code, is_verified)
+                  VALUES ('$username', '$email', '$password', '$domisili', '$nomerwa', '$userins', '$foto_profile', '$otp_code', 0)";
+          $result = mysqli_query($conn, $sql);
+
+          if ($result) {
+              // Send OTP Email
+              $mail = new PHPMailer(true);
+              try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'canteengoo@gmail.com';  // Ganti dengan alamat email Anda
+                $mail->Password   = 'lspc porg znnt pvly';   // Ganti dengan password atau App Password Anda
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // TLS
+                $mail->Port       = 587;  // Port untuk TLS
+                
+
+                  $mail->setFrom('canteengoo@gmail.com', 'CanteenGo');
+                  $mail->addAddress($email, $username);
+
+                  $mail->isHTML(true);
+                  $mail->Subject = 'Kode OTP Verifikasi Email';
+                  $mail->Body = "<h1>Selamat datang di CanteenGo</h1>
+                                 <h3>Gunakan kode OTP berikut untuk menyelesaikan pendaftaran</h3>
+                                 <h2>$otp_code</h2>
+                                 <p>Masukkan kode OTP yang telah kami kirimkan ke email Anda untuk melanjutkan proses verifikasi. Pastikan Anda memasukkan kode dengan benar agar dapat melanjutkan ke langkah berikutnya!</p>";
+                              if ($mail->send()) {
+                                  echo "<script>alert('Pendaftaran berhasil. Silakan cek email Anda untuk kode OTP.'); window.location.href='verify.php?email=$email';</script>";
+                              } else {
+                                  echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+                              }
+                              
+                        $mail->SMTPDebug = 2;
+              } catch (Exception $e) {
+                  echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+              }
+          } else {
+              echo "<script>alert('Terjadi kesalahan, silakan coba lagi.');</script>";
+          }
       } else {
-        echo "<script>
-                alert ('Password atau Email Salah')
-                </script>";
+          echo "<script>alert('Email sudah digunakan oleh pengguna lain.');</script>";
       }
-    } else {
-      echo "<script>alert ('Email Sudah digunakan Oleh Pengguna Lain')</script>";
-    }
   } else {
-    echo "<script>alert ('Password Harus Sama')</script>";
+      echo "<script>alert('Password harus sama.');</script>";
   }
 }
+
+
 
 ?>
 
